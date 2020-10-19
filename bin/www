@@ -5,7 +5,7 @@
  */
 
 var app = require('../app');
-var debug = require('debug')('samantha-pinos-mpv:server');
+var debug = require('debug')('react-express-mysql-heroku:server');
 var http = require('http');
 
 /**
