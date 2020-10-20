@@ -23,19 +23,19 @@ class App extends Component {
   }
 
   getItems = () => {
-    fetch(`/items`)
+    fetch(`/items/collection`)
       .then(response => response.json())
       .then(response => {
         this.setState({ items: response });
       });
   };
 
-  makeSelected(id) {
-    const { items } = this.state;
-    let selected = items.find(product => product.id === id);
+  makeSelected(item) {
+    //const { items } = this.state;
+    //let selected = items.find(product => product.id === id);
 
     this.setState({
-      selectedItem: selected
+      selectedItem: item[0]
     });
   }
 
@@ -67,7 +67,7 @@ class App extends Component {
               )}
             />
             <Route
-              path="/item/:id"
+              path="/item"
               render={props => (
                 <Itempage
                   {...props}

@@ -5,7 +5,7 @@ export default class Itempage extends Component {
   render() {
     const { selectedItem, callback } = this.props;
     return (
-      <div>
+      <div className="container text-center">
         <h3>{selectedItem.name}</h3>
         <h5>{`${selectedItem.price} €`}</h5>
         <p>{selectedItem.description}</p>

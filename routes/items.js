@@ -38,16 +38,6 @@ router.get("/filter/category/:categoryId", function(req, res, next) {
     .catch(err => res.status(500).send(err));
 });
 
-//get list of colors
-
-router.get("/colors", function(req, res, next) {
-  db("SELECT * FROM Colors")
-    .then(results => {
-      res.send(results.data);
-    })
-    .catch(err => res.status(500).send(err));
-});
-
 // filter items based on their color
 
 router.get("/filter/color/:colorId", function(req, res, next) {
@@ -62,8 +52,13 @@ router.get("/filter/color/:colorId", function(req, res, next) {
 
 // filter items based on their color and category
 
-router.get("/", function(req, res, next) {
-  const { colorId, categoryId } = req.body;
+router.get("/filter/category/:categoryId/color/:colorId/", function(
+  req,
+  res,
+  next
+) {
+  const colorId = req.params.colorId;
+  const categoryId = req.params.categoryId;
 
   db(
     `SELECT * FROM articles WHERE colorId = ${colorId} AND categoryId = ${categoryId}`

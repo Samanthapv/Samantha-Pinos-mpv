@@ -3,18 +3,29 @@ import { Link } from "react-router-dom";
 
 export default class Itemlist extends Component {
   selectItem = id => {
-    this.props.makeSelected(id);
-    console.log(id);
+    fetch("/items/" + id)
+      .then(response => response.json())
+      .then(response => {
+        this.props.makeSelected(response);
+      });
+  };
+
+  filterByColor = colorid => {
+    fetch("items/filter/color/" + colorid)
+      .then(response => response.json())
+      .then(response => {
+        this.props.makeSelected(response);
+      });
   };
 
   render() {
     const { items } = this.props;
     return (
-      <div>
+      <div className="container text-center">
         {items.map(item => (
           <div key={item.id}>
             <p>{item.name}</p>
-            <Link to="/item">
+            <Link to="/item/">
               {" "}
               <img
                 src={item.picture}
