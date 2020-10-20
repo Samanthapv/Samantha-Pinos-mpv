@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www",
-    "migrate": "node model/database"
+    "migrate": "node model/database migration.sql",
+    "seed": "node model/database seed.sql"
   },
   "husky": {
     "hooks": {

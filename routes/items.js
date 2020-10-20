@@ -7,7 +7,7 @@ router.use(bodyParser.json());
 
 // GET item list
 
-router.get("/", function(req, res, next) {
+router.get("/items", function(req, res, next) {
   db("SELECT * FROM articles")
     .then(results => {
       res.send(results.data);
@@ -17,19 +17,19 @@ router.get("/", function(req, res, next) {
 
 //GET one specific item
 
-router.get("/:id", function(req, res, next) {
-  let id = req.params.id;
-  db(`SELECT * FROM articles where id= ${id}`)
-    .then(results => {
-      res.send(results.data);
-    })
-    .catch(err => res.status(500).send(err));
-});
+// router.get("/:id", function(req, res, next) {
+//   let id = req.params.id;
+//   db(`SELECT * FROM articles where id= ${id}`)
+//     .then(results => {
+//       res.send(results.data);
+//     })
+//     .catch(err => res.status(500).send(err));
+// });
 
 // filter items based on their category
 
-router.get("/", function(req, res, next) {
-  const { categoryId } = req.body;
+router.get("/items/category/:categoryId", function(req, res, next) {
+  const categoryId = req.params.categoryId;
 
   db(`SELECT * FROM articles WHERE categoryId = ${categoryId}`)
     .then(results => {
@@ -37,6 +37,16 @@ router.get("/", function(req, res, next) {
     })
     .catch(err => res.status(500).send(err));
 });
+
+// router.get("/", function(req, res, next) {
+//   const { categoryId } = req.body;
+
+//   db(`SELECT * FROM articles WHERE categoryId = ${categoryId}`)
+//     .then(results => {
+//       res.send(results.data);
+//     })
+//     .catch(err => res.status(500).send(err));
+// });
 
 // filter items based on their color
 
