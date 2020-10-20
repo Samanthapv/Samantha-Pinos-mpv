@@ -8,7 +8,6 @@ class App extends Component {
   }
 
   render() {
-    const { students, firstName, lastName, showData } = this.state;
     return <div> hola </div>;
   }
 }
