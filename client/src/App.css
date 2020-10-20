@@ -2,3 +2,9 @@
   display: inline-block;
   text-align: center;
 }
+
+.cartItem {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}

@@ -7,7 +7,7 @@ router.use(bodyParser.json());
 
 // GET item list
 
-router.get("/items", function(req, res, next) {
+router.get("/collection", function(req, res, next) {
   db("SELECT * FROM articles")
     .then(results => {
       res.send(results.data);
@@ -17,18 +17,18 @@ router.get("/items", function(req, res, next) {
 
 //GET one specific item
 
-// router.get("/:id", function(req, res, next) {
-//   let id = req.params.id;
-//   db(`SELECT * FROM articles where id= ${id}`)
-//     .then(results => {
-//       res.send(results.data);
-//     })
-//     .catch(err => res.status(500).send(err));
-// });
+router.get("/:id", function(req, res, next) {
+  let id = req.params.id;
+  db(`SELECT * FROM articles where id= ${id}`)
+    .then(results => {
+      res.send(results.data);
+    })
+    .catch(err => res.status(500).send(err));
+});
 
 // filter items based on their category
 
-router.get("/items/category/:categoryId", function(req, res, next) {
+router.get("/filter/category/:categoryId", function(req, res, next) {
   const categoryId = req.params.categoryId;
 
   db(`SELECT * FROM articles WHERE categoryId = ${categoryId}`)
@@ -38,20 +38,20 @@ router.get("/items/category/:categoryId", function(req, res, next) {
     .catch(err => res.status(500).send(err));
 });
 
-// router.get("/", function(req, res, next) {
-//   const { categoryId } = req.body;
+//get list of colors
 
-//   db(`SELECT * FROM articles WHERE categoryId = ${categoryId}`)
-//     .then(results => {
-//       res.send(results.data);
-//     })
-//     .catch(err => res.status(500).send(err));
-// });
+router.get("/colors", function(req, res, next) {
+  db("SELECT * FROM Colors")
+    .then(results => {
+      res.send(results.data);
+    })
+    .catch(err => res.status(500).send(err));
+});
 
 // filter items based on their color
 
-router.get("/", function(req, res, next) {
-  const { colorId } = req.body;
+router.get("/filter/color/:colorId", function(req, res, next) {
+  const colorId = req.params.colorId;
 
   db(`SELECT * FROM articles WHERE colorId = ${colorId}`)
     .then(results => {

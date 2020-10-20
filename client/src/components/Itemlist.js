@@ -2,10 +2,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 export default class Itemlist extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   selectItem = id => {
     this.props.makeSelected(id);
     console.log(id);

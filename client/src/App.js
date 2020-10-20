@@ -13,7 +13,8 @@ class App extends Component {
     super(props);
     this.state = {
       items: [],
-      selectedItem: ""
+      selectedItem: "",
+      itemsInTheCart: []
     };
   }
 
@@ -38,8 +39,15 @@ class App extends Component {
     });
   }
 
+  addItems(item) {
+    this.setState({
+      itemsInTheCart: [...this.state.itemsInTheCart, item]
+    });
+    console.log(this.state.itemsInTheCart);
+  }
+
   render() {
-    const { items, selectedItem } = this.state;
+    const { items, selectedItem, itemsInTheCart } = this.state;
 
     return (
       <div>
@@ -59,12 +67,21 @@ class App extends Component {
               )}
             />
             <Route
-              path="/item"
+              path="/item/:id"
               render={props => (
-                <Itempage {...props} selectedItem={selectedItem} />
+                <Itempage
+                  {...props}
+                  selectedItem={selectedItem}
+                  callback={item => this.addItems(item)}
+                />
               )}
             />
-            <Route path="/cart" component={Cart} />
+
+            <Route
+              path="/cart"
+              render={props => <Cart {...props} itemsInCart={itemsInTheCart} />}
+            />
+
             <Route path="/" exact component={Home} />
 
             <div>Page not found</div>
@@ -77,8 +94,7 @@ class App extends Component {
 
 export default App;
 
-{
-  /*
+/*
 
           same <Route path="/" component={Home}/>
           go to page and import withRouter from r-r-dom
@@ -86,4 +102,3 @@ export default App;
 export default withRouter(User)
 
 */
-}
