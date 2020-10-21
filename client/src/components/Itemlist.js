@@ -9,7 +9,8 @@ export default class Itemlist extends Component {
       filtered: [],
       search: "",
       colors: [],
-      categories: []
+      categories: [],
+      showfilter: false
     };
   }
 

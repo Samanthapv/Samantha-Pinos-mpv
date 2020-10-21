@@ -9,7 +9,7 @@ export default class AllItems extends Component {
         {items.map(item => (
           <div key={item.id}>
             <p>{item.name}</p>
-            <Link to="/item/">
+            <Link to={"/item/" + item.id}>
               {" "}
               <img
                 src={item.picture}

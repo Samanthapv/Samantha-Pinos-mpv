@@ -6,11 +6,10 @@ export default class AddItem extends Component {
   }
 
   render() {
-    const { selectedItem } = this.props;
-    console.log(selectedItem);
+    const { item } = this.props;
     return (
       <div className="cart-form">
-        <button onClick={() => this.addToCart(selectedItem)}>
+        <button onClick={() => this.addToCart(item)}>
           Add Item to the Cart
         </button>
       </div>

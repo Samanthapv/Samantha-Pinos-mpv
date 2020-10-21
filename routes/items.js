@@ -27,17 +27,21 @@ router.get("/:id", function(req, res, next) {
 });
 
 //filter items
-//what we need http://localhost:5000/items/?color=3&category=9
+//what we need http://localhost:5000/items?color=3&category=9
 //what we need 2 SELECT * FROM articles WHERE colorId = ${colorId} AND categoryId = ${categoryId}`
 
 router.get("/?", function(req, res, next) {
   var sql = "SELECT * from articles WHERE";
+
   const color = req.query.color;
   const category = req.query.category;
 
-  if (color && !category) {
-    sql += "colorID = ? AND categoryId = ?";
-    console.log(sql);
+  if (color && category) {
+    sql += ` colorID = ${color} and categoryId = ${category};`;
+  } else if (color) {
+    sql += ` colorID = ${color};`;
+  } else if (category) {
+    sql += ` categoryID = ${category};`;
   }
 
   db(sql)

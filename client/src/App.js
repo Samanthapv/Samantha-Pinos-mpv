@@ -67,7 +67,7 @@ class App extends Component {
               )}
             />
             <Route
-              path="/item"
+              path="/item/:id"
               render={props => (
                 <Itempage
                   {...props}
