@@ -11,11 +11,7 @@ export default class AllItems extends Component {
             <p>{item.name}</p>
             <Link to={"/item/" + item.id}>
               {" "}
-              <img
-                src={item.picture}
-                alt={item.name}
-                onClick={() => callback(item.id)}
-              />
+              <img src={item.picture} alt={item.name} />
             </Link>
           </div>
         ))}

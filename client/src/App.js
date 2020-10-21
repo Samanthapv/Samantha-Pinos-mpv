@@ -18,22 +18,7 @@ class App extends Component {
     };
   }
 
-  componentDidMount() {
-    this.getItems();
-  }
-
-  getItems = () => {
-    fetch(`/items/`)
-      .then(response => response.json())
-      .then(response => {
-        this.setState({ items: response });
-      });
-  };
-
   makeSelected(item) {
-    //const { items } = this.state;
-    //let selected = items.find(product => product.id === id);
-
     this.setState({
       selectedItem: item[0]
     });

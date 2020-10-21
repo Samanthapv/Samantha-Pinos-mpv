@@ -1,104 +1,71 @@
 import React, { Component } from "react";
 import AllItems from "./AllItems";
-import FilteredItems from "./FilteredItems";
+import { Link } from "react-router-dom";
+
+import FilterSearch from "./FilterSearch";
 
 export default class Itemlist extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      items: [],
       filtered: [],
-      search: "",
-      colors: [],
-      categories: [],
-      showfilter: false
+      notFound: false
     };
   }
 
   componentDidMount() {
-    this.getColors();
-    this.getCategories();
+    this.getItems();
   }
 
-  getColors = () => {
-    fetch(`/colors`)
+  getItems = () => {
+    fetch(`/items/`)
       .then(response => response.json())
       .then(response => {
-        this.setState({ colors: response });
+        this.setState({ items: response });
       });
   };
 
-  getCategories = () => {
-    fetch(`/categories`)
-      .then(response => response.json())
-      .then(response => {
-        this.setState({ categories: response });
-      });
-  };
-
-  updateInput = e => {
-    const value = e.target.value;
-    const name = e.target.name;
-
+  filter = newItems => {
+    console.log(newItems);
     this.setState({
-      [name]: value
+      items: newItems,
+      notFound: false
     });
   };
 
-  search = () => {
-    const { search } = this.state;
-    const { items } = this.props;
-    if (search) {
-      this.setState({
-        filtered: items.filter(item =>
-          item.tags.toLowerCase().includes(search.toLowerCase())
-        )
-      });
-    }
+  displayNotFound = () => {
+    this.setState({
+      notFound: true
+    });
   };
 
-  selectItem = id => {
-    fetch("/items/" + id)
-      .then(response => response.json())
-      .then(response => {
-        this.props.makeSelected(response);
-      });
-  };
-
-  filterByColor = colorid => {
-    fetch("items/filter/color/" + colorid)
-      .then(response => response.json())
-      .then(response => {
-        this.props.makeSelected(response);
-      });
+  goBack = () => {
+    this.setState({
+      notFound: false
+    });
+    this.getItems();
   };
 
   render() {
-    const { items } = this.props;
-    const { filtered, search, categories, colors } = this.state;
+    const { items, notFound } = this.state;
     return (
-      <div className="container text-center">
-        <ul>
-          {categories.map(item => (
-            <li className="categories" key={item.id}>
-              {item.category_name}
-            </li>
-          ))}
-        </ul>
-        <input
-          type="text"
-          name="search"
-          value={search}
-          onChange={e => this.updateInput(e)}
-          placeholder="search for an item"
+      <div className="container text-center mt-3">
+        <FilterSearch
+          items={items}
+          callback={item => this.filter(item)}
+          callback2={this.displayNotFound}
         />
-        <button onClick={this.search}>
-          <i className="fas fa-search"></i>
-        </button>
 
-        {filtered.length > 0 ? (
-          <FilteredItems items={filtered} callback={this.selectItem} />
+        {notFound ? (
+          <div>
+            No items matched your search.{" "}
+            <p className="link" onClick={this.goBack}>
+              Back to the collection
+            </p>{" "}
+          </div>
         ) : (
-          <AllItems callback={this.selectItem} items={items} />
+          <AllItems items={items} />
         )}
       </div>
     );

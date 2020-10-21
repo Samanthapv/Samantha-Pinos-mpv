@@ -26,30 +26,39 @@ router.get("/:id", function(req, res, next) {
     .catch(err => res.status(500).send(err));
 });
 
-//filter items
-//what we need http://localhost:5000/items?color=3&category=9
-//what we need 2 SELECT * FROM articles WHERE colorId = ${colorId} AND categoryId = ${categoryId}`
-
-router.get("/?", function(req, res, next) {
-  var sql = "SELECT * from articles WHERE";
-
-  const color = req.query.color;
-  const category = req.query.category;
-
-  if (color && category) {
-    sql += ` colorID = ${color} and categoryId = ${category};`;
-  } else if (color) {
-    sql += ` colorID = ${color};`;
-  } else if (category) {
-    sql += ` categoryID = ${category};`;
-  }
-
-  db(sql)
+router.get("/color/:color", function(req, res, next) {
+  let color = req.params.color;
+  db(`SELECT * FROM articles WHERE colorID = ${color}`)
     .then(results => {
       res.send(results.data);
     })
     .catch(err => res.status(500).send(err));
 });
+
+//filter items
+//what we need http://localhost:5000/items?color=3&category=9
+//what we need 2 SELECT * FROM articles WHERE colorId = ${colorId} AND categoryId = ${categoryId}`
+
+// router.get("/", function(req, res, next) {
+//   var sql = "SELECT * from articles WHERE";
+
+//   const color = req.query.color;
+//   const category = req.query.category;
+
+//   if (color && category) {
+//     sql += ` colorID = ${color} and categoryId = ${category};`;
+//   } else if (color) {
+//     sql += ` colorID = ${color};`;
+//   } else if (category) {
+//     sql += ` categoryID = ${category};`;
+//   }
+
+//   db(sql)
+//     .then(results => {
+//       res.send(results.data);
+//     })
+//     .catch(err => res.status(500).send(err));
+// });
 
 // INSERT a new item into the DB (won't be used in the frontend, added to add items in Postman)
 

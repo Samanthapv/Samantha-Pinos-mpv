@@ -1,4 +1,4 @@
-CREATE TABLE `Items` (
+CREATE TABLE `Articles` (
 	`id` INT NOT NULL AUTO_INCREMENT,
 	`name` varchar(45) NOT NULL,
 	`price` INT NOT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE `Colors` (
 	PRIMARY KEY (`id`)
 );
 
-ALTER TABLE `Items` ADD CONSTRAINT `Items_fk0` FOREIGN KEY (`colorId`) REFERENCES `Colors`(`id`);
+ALTER TABLE `Articles` ADD CONSTRAINT `Items_fk0` FOREIGN KEY (`colorId`) REFERENCES `Colors`(`id`);
 
-ALTER TABLE `Items` ADD CONSTRAINT `Items_fk1` FOREIGN KEY (`categoryId`) REFERENCES `Categories`(`id`);
+ALTER TABLE `Articles` ADD CONSTRAINT `Items_fk1` FOREIGN KEY (`categoryId`) REFERENCES `Categories`(`id`);
 

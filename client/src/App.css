@@ -14,3 +14,8 @@
   margin-left: 10px;
   text-align: center;
 }
+
+.link {
+  text-decoration: underline;
+  cursor: pointer;
+}
