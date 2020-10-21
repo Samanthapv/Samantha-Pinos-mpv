@@ -8,3 +8,9 @@
   justify-content: center;
   gap: 20px;
 }
+
+.categories {
+  display: inline;
+  margin-left: 10px;
+  text-align: center;
+}

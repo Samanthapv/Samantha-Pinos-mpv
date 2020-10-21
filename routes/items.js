@@ -7,7 +7,7 @@ router.use(bodyParser.json());
 
 // GET item list
 
-router.get("/collection", function(req, res, next) {
+router.get("/", function(req, res, next) {
   db("SELECT * FROM articles")
     .then(results => {
       res.send(results.data);
@@ -26,43 +26,21 @@ router.get("/:id", function(req, res, next) {
     .catch(err => res.status(500).send(err));
 });
 
-// filter items based on their category
+//filter items
+//what we need http://localhost:5000/items/?color=3&category=9
+//what we need 2 SELECT * FROM articles WHERE colorId = ${colorId} AND categoryId = ${categoryId}`
 
-router.get("/filter/category/:categoryId", function(req, res, next) {
-  const categoryId = req.params.categoryId;
+router.get("/?", function(req, res, next) {
+  var sql = "SELECT * from articles WHERE";
+  const color = req.query.color;
+  const category = req.query.category;
 
-  db(`SELECT * FROM articles WHERE categoryId = ${categoryId}`)
-    .then(results => {
-      res.send(results.data);
-    })
-    .catch(err => res.status(500).send(err));
-});
+  if (color && !category) {
+    sql += "colorID = ? AND categoryId = ?";
+    console.log(sql);
+  }
 
-// filter items based on their color
-
-router.get("/filter/color/:colorId", function(req, res, next) {
-  const colorId = req.params.colorId;
-
-  db(`SELECT * FROM articles WHERE colorId = ${colorId}`)
-    .then(results => {
-      res.send(results.data);
-    })
-    .catch(err => res.status(500).send(err));
-});
-
-// filter items based on their color and category
-
-router.get("/filter/category/:categoryId/color/:colorId/", function(
-  req,
-  res,
-  next
-) {
-  const colorId = req.params.colorId;
-  const categoryId = req.params.categoryId;
-
-  db(
-    `SELECT * FROM articles WHERE colorId = ${colorId} AND categoryId = ${categoryId}`
-  )
+  db(sql)
     .then(results => {
       res.send(results.data);
     })
@@ -79,11 +57,12 @@ router.post("/", function(req, res, next) {
     description,
     colorId,
     inventory,
-    categoryId
+    categoryId,
+    tags
   } = req.body;
 
   db(
-    `INSERT INTO articles (name, price, picture, description, colorId, inventory, categoryId)  VALUES ("${name}", "${price}", "${picture}", "${description}", "${colorId}", "${inventory}", "${categoryId}") `
+    `INSERT INTO articles (name, price, picture, description, colorId, inventory, categoryId)  VALUES ("${name}", "${price}", "${picture}", "${description}", "${colorId}", "${inventory}", "${categoryId}", "${tags}") `
   )
     .then(results => {
       res.send(results.data);

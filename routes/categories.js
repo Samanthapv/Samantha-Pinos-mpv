@@ -6,7 +6,7 @@ const db = require("../model/helper");
 router.use(bodyParser.json());
 
 router.get("/", function(req, res, next) {
-  db("SELECT * FROM Colors")
+  db("SELECT * FROM Categories")
     .then(results => {
       res.send(results.data);
     })

@@ -23,7 +23,7 @@ class App extends Component {
   }
 
   getItems = () => {
-    fetch(`/items/collection`)
+    fetch(`/items/`)
       .then(response => response.json())
       .then(response => {
         this.setState({ items: response });

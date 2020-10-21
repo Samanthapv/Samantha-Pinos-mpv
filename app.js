@@ -6,6 +6,8 @@ var logger = require("morgan");
 var cors = require("cors");
 
 var itemsRouter = require("./routes/items");
+var colorsRouter = require("./routes/colors");
+var categoriesRouter = require("./routes/categories");
 
 var app = express();
 
@@ -19,6 +21,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "client/build")));
 
 app.use("/items", itemsRouter);
+app.use("/colors", colorsRouter);
+app.use("/categories", categoriesRouter);
 
 // Anything that doesn't match the above, send back index.html
 app.get("*", (req, res) => {
