@@ -1,15 +1,15 @@
 import React, { Component } from "react";
-import AllItems from "./AllItems";
+import ItemGrid from "./ItemGrid";
 import { Link } from "react-router-dom";
 
-import FilterSearch from "./FilterSearch";
+import Filters from "./Filters";
+import Search from "./Search";
 
 export default class Itemlist extends Component {
   constructor(props) {
     super(props);
     this.state = {
       items: [],
-      filtered: [],
       notFound: false
     };
   }
@@ -51,11 +51,14 @@ export default class Itemlist extends Component {
     const { items, notFound } = this.state;
     return (
       <div className="container text-center mt-3">
-        <FilterSearch
+        <Filters
           items={items}
           callback={item => this.filter(item)}
           callback2={this.displayNotFound}
         />
+
+        {/* <Search  callback={item => this.filter(item)}
+          callback2={this.displayNotFound} /> */}
 
         {notFound ? (
           <div>
@@ -65,7 +68,7 @@ export default class Itemlist extends Component {
             </p>{" "}
           </div>
         ) : (
-          <AllItems items={items} />
+          <ItemGrid items={items} />
         )}
       </div>
     );

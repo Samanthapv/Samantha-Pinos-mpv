@@ -15,6 +15,9 @@ export default class Nav extends Component {
           <Link to="/cart">
             <li className="nav-li">cart</li>
           </Link>
+          <Link to="/search">
+            <li className="nav-li">/search</li>
+          </Link>
         </ul>
       </nav>
     );

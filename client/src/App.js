@@ -6,6 +6,7 @@ import Nav from "./components/Nav";
 import Cart from "./components/Cart";
 import Header from "./components/Header";
 import Home from "./components/Home";
+import Search from "./components/Search";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 class App extends Component {
@@ -43,6 +44,7 @@ class App extends Component {
           <Switch>
             <Route
               path="/itemlist"
+              exact
               render={props => (
                 <Itemlist
                   {...props}
@@ -66,6 +68,7 @@ class App extends Component {
               path="/cart"
               render={props => <Cart {...props} itemsInCart={itemsInTheCart} />}
             />
+            <Route path="/search/:q?" component={Search} />
 
             <Route path="/" exact component={Home} />
 
