@@ -7,6 +7,7 @@ CREATE TABLE `Articles` (
 	`colorId` varchar(40) NOT NULL,
 	`inventory` INT NOT NULL,
 	`categoryId` varchar(255) NOT NULL,
+	`tags` varchar(200) NOT NULL,
 	PRIMARY KEY (`id`)
 );
 

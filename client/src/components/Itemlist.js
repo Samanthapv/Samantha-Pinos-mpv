@@ -19,7 +19,7 @@ export default class Itemlist extends Component {
   }
 
   getItems = () => {
-    fetch(`/items/`)
+    fetch(`/items`)
       .then(response => response.json())
       .then(response => {
         this.setState({ items: response });

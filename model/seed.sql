@@ -1,0 +1,22 @@
+insert INTO Categories (category_name) VALUES ("shoes");
+insert INTO Categories (category_name) VALUES ("dresses");
+insert INTO Categories (category_name) VALUES ("tops");
+insert INTO Categories (category_name) VALUES ("pants");
+insert INTO Categories (category_name) VALUES ("skirts");
+insert INTO Categories (category_name) VALUES ("outerwear");
+insert INTO Categories (category_name) VALUES ("denim");
+insert INTO Categories (category_name) VALUES ("accesories");
+
+insert INTO Colors (color_name) VALUES ("black");
+insert INTO Colors (color_name) VALUES ("white");
+insert INTO Colors (color_name) VALUES ("pink");
+insert INTO Colors (color_name) VALUES ("orange");
+insert INTO Colors (color_name) VALUES ("green");
+insert INTO Colors (color_name) VALUES ("blue");
+insert INTO Colors (color_name) VALUES ("brown");
+insert INTO Colors (color_name) VALUES ("beige");
+insert INTO Colors (color_name) VALUES ("multicolor");
+insert INTO Colors (color_name) VALUES ("metallic");
+insert INTO Colors (color_name) VALUES ("yellow");
+insert INTO Colors (color_name) VALUES ("grey");
+insert INTO Colors (color_name) VALUES ("purple");

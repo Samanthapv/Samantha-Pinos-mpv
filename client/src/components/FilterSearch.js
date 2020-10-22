@@ -53,17 +53,30 @@ export default class FilterSearch extends Component {
     }
   };
 
-  filterByColor = colorId => {
-    const { callback, callback2 } = this.props;
+  /* const { callback, callback2 } = this.props;
     fetch("items/color/" + colorId)
       .then(response => response.json())
       .then(response => {
-        response.length > 0 ? callback(response) : callback2();
+        response.length > 0 ? callback(response) : callback2(); 
+      });*/
+
+  filterItems = () => {
+    const { color, category } = this.state;
+
+    let url = `/items/`;
+    if (color || category) {
+      url += `?color=${color}&category=${category}`;
+    }
+
+    fetch(url)
+      .then(response => response.json())
+      .then(response => {
+        this.setState({ items: response });
       });
   };
 
   showFilters = () => {
-    this.setState(prevState => ({ showfilter: !prevState.showFilter }));
+    this.setState({ showfilter: !this.state.showfilter });
   };
 
   render() {

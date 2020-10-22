@@ -8,18 +8,22 @@ router.use(bodyParser.json());
 // GET item list
 
 router.get("/", function(req, res, next) {
-  db("SELECT * FROM articles")
-    .then(results => {
-      res.send(results.data);
-    })
-    .catch(err => res.status(500).send(err));
-});
+  var sql = "SELECT * from articles WHERE";
 
-//GET one specific item
+  const color = req.query.color;
+  const category = req.query.category;
 
-router.get("/:id", function(req, res, next) {
-  let id = req.params.id;
-  db(`SELECT * FROM articles where id= ${id}`)
+  if (color && category) {
+    sql += ` colorID = ${color} and categoryId = ${category};`;
+  } else if (color) {
+    sql += ` colorID = ${color};`;
+  } else if (category) {
+    sql += ` categoryID = ${category};`;
+  } else {
+    sql += 1;
+  }
+
+  db(sql)
     .then(results => {
       res.send(results.data);
     })
@@ -39,26 +43,16 @@ router.get("/color/:color", function(req, res, next) {
 //what we need http://localhost:5000/items?color=3&category=9
 //what we need 2 SELECT * FROM articles WHERE colorId = ${colorId} AND categoryId = ${categoryId}`
 
-// router.get("/", function(req, res, next) {
-//   var sql = "SELECT * from articles WHERE";
+//GET one specific item
 
-//   const color = req.query.color;
-//   const category = req.query.category;
-
-//   if (color && category) {
-//     sql += ` colorID = ${color} and categoryId = ${category};`;
-//   } else if (color) {
-//     sql += ` colorID = ${color};`;
-//   } else if (category) {
-//     sql += ` categoryID = ${category};`;
-//   }
-
-//   db(sql)
-//     .then(results => {
-//       res.send(results.data);
-//     })
-//     .catch(err => res.status(500).send(err));
-// });
+router.get("/:id", function(req, res, next) {
+  let id = req.params.id;
+  db(`SELECT * FROM articles where id= ${id}`)
+    .then(results => {
+      res.send(results.data);
+    })
+    .catch(err => res.status(500).send(err));
+});
 
 // INSERT a new item into the DB (won't be used in the frontend, added to add items in Postman)
 
