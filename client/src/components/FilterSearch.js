@@ -7,6 +7,8 @@ export default class FilterSearch extends Component {
       search: "",
       colors: [],
       categories: [],
+      color: "",
+      category: "",
       showfilter: false
     };
   }
@@ -62,16 +64,17 @@ export default class FilterSearch extends Component {
 
   filterItems = () => {
     const { color, category } = this.state;
+    const { callback, callback2 } = this.props;
 
     let url = `/items/`;
     if (color || category) {
       url += `?color=${color}&category=${category}`;
     }
-
+    console.log(url);
     fetch(url)
       .then(response => response.json())
       .then(response => {
-        this.setState({ items: response });
+        response.length > 0 ? callback(response) : callback2();
       });
   };
 
@@ -79,30 +82,51 @@ export default class FilterSearch extends Component {
     this.setState({ showfilter: !this.state.showfilter });
   };
 
+  handleClick = (name, content) => {
+    this.setState({
+      [name]: content
+    });
+  };
+
   render() {
-    const { search, colors, categories, showfilter } = this.state;
+    const {
+      search,
+      colors,
+      categories,
+      showfilter,
+      color,
+      category
+    } = this.state;
 
     return (
       <div className="container text-center">
-        <ul>
-          {categories.map(item => (
-            <li className="categories" key={item.id}>
-              {item.category_name}
-            </li>
-          ))}
-        </ul>
-
         <div>
           <p className="link" onClick={this.showFilters}>
-            Filter by color
+            Filter items
           </p>
           {showfilter && (
-            <div>
+            <div className="mb-3">
+              <ul>
+                {categories.map(item => (
+                  <li
+                    className={` categories link ${
+                      category === item.id ? "selected" : "inactive"
+                    }`}
+                    key={item.id}
+                    onClick={() => this.handleClick("category", item.id)}
+                  >
+                    {item.category_name}
+                  </li>
+                ))}
+              </ul>
+
               {colors.map(color => (
                 <button
-                  className="btn btn-light"
+                  className={` btn ${
+                    color === color.id ? "btn-link" : "inactive"
+                  }`}
                   key={color.id}
-                  onClick={() => this.filterByColor(color.id)}
+                  onClick={() => this.handleClick("color", color.id)}
                 >
                   {color.color_name}{" "}
                   <i
@@ -112,6 +136,12 @@ export default class FilterSearch extends Component {
                   ></i>
                 </button>
               ))}
+              <button
+                className="btn btn-info mt-3 mb-3"
+                onClick={this.filterItems}
+              >
+                Apply filters
+              </button>
             </div>
           )}
 
