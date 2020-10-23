@@ -27,6 +27,10 @@ export default class Itemlist extends Component {
     const { items } = this.state;
     return (
       <div className="container text-center mt-3">
+        <div className="rotatedHeader">
+          {" "}
+          <h1 className="rotatedTitle">header</h1>
+        </div>
         <Link to="/filter">
           {" "}
           <p className="link"> Filter items </p>

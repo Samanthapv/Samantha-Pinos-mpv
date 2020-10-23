@@ -5,7 +5,7 @@ export default class Nav extends Component {
   render() {
     return (
       <nav>
-        <ul>
+        <ul className="linkUL">
           <Link to="/">
             <li className="nav-li">home/ </li>
           </Link>
@@ -13,10 +13,14 @@ export default class Nav extends Component {
             <li className="nav-li">collection/ </li>
           </Link>
           <Link to="/cart">
-            <li className="nav-li">cart</li>
+            <li className="nav-li">
+              <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+            </li>
           </Link>
           <Link to="/search?q">
-            <li className="nav-li">/search</li>
+            <li className="nav-li">
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </li>
           </Link>
         </ul>
       </nav>

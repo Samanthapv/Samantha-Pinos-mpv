@@ -3,6 +3,12 @@
   text-align: center;
 }
 
+.linkUL {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
 .cartItem {
   display: flex;
   justify-content: center;
@@ -22,4 +28,86 @@
 
 .selected {
   color: hotpink;
+}
+
+.product-image {
+  object-fit: cover;
+  width: 430px;
+  height: 430px;
+  padding: 0px;
+  cursor: pointer;
+}
+
+.withBorder {
+  border: 2px solid black;
+}
+
+.img__wrap {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.item-description,
+.item-price {
+  color: white;
+  text-shadow: 2px 2px 4px #83f52c;
+}
+
+.item-page {
+  margin-top: 80px;
+}
+
+.product-pic {
+  object-fit: cover;
+  width: 530px;
+  height: 530px;
+  padding: 0px;
+}
+
+.product-page {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: greenyellow;
+  width: 530px;
+  height: 530px;
+}
+
+.add-button {
+  background-color: black;
+  color: white;
+}
+
+.add-button:hover {
+  color: greenyellow;
+}
+
+.rotatedHeader {
+  position: fixed;
+  top: 50%;
+  padding: 0 5px;
+  text-align: center;
+  border-radius: 5px;
+  transform-origin: center top;
+  transform: translateX(-50%) rotate(-90deg);
+}
+.rotatedTitle {
+  color: black;
+  line-height: 20px;
+  display: inline-block;
 }

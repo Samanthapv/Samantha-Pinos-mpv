@@ -18,8 +18,6 @@ export default class Itempage extends Component {
       match: { params }
     } = this.props;
 
-    console.log(params.id);
-
     fetch(`/items/${params.id}`)
       .then(response => {
         return response.json();
@@ -33,14 +31,20 @@ export default class Itempage extends Component {
     const { item } = this.state;
     const { callback } = this.props;
     return (
-      <div className="container text-center">
+      <div className="container text-center item-page">
         {item && (
-          <div>
-            <h3>{item.name}</h3>
-            <h5>{`${item.price} €`}</h5>
-            <p>{item.description}</p>
-            <AddItem item={item} callback={callback} />
-            <img src={item.picture} alt={item.name} />
+          <div className="product-page">
+            <img
+              className="product-pic img-fluid withBorder"
+              src={item.picture}
+              alt={item.name}
+            />
+            <div className="product-info">
+              <h3>{item.name}</h3>
+              <h5>{`${item.price} €`}</h5>
+              <p>{item.description}</p>
+              <AddItem item={item} callback={callback} />
+            </div>
           </div>
         )}
       </div>

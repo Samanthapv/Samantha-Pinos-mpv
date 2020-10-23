@@ -9,7 +9,7 @@ export default class AddItem extends Component {
     const { item } = this.props;
     return (
       <div className="cart-form">
-        <button onClick={() => this.addToCart(item)}>
+        <button className="btn add-button" onClick={() => this.addToCart(item)}>
           Add Item to the Cart
         </button>
       </div>

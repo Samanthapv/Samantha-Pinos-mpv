@@ -56,6 +56,13 @@ export default function Filters(props) {
     name === "color" ? setColor(content) : setCategory(content);
   };
 
+  const resetFilter = () => {
+    setColor("");
+    setCategory("");
+    setnotFound(false);
+    filterItems();
+  };
+
   return (
     <div className="container text-center">
       <div>
@@ -96,8 +103,13 @@ export default function Filters(props) {
               Apply filters
             </button>
           </Link>
+          {(color || category) && <p onClick={resetFilter}>Reset filters</p>}
         </div>
-        {!notFound ? <ItemGrid items={items} /> : <NotFound />}
+        {!notFound ? (
+          <ItemGrid items={items} />
+        ) : (
+          <NotFound action={"filter"} callback={resetFilter} />
+        )}
       </div>
     </div>
   );

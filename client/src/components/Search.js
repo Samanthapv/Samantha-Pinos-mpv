@@ -1,22 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import ItemGrid from "./ItemGrid";
+import NotFound from "./NotFound";
 
 export default function Search() {
   let { q } = useParams();
-  let [items, setItems] = useState([]);
+  let [items] = useState([]);
   let [filteredItems, setFilteredItems] = useState([]);
   let history = useHistory();
+  let [notFound, setnotFound] = useState(false);
 
   const search = () => {
-    fetch(`/items/search/${q}`)
+    let url = `/items/`;
+    if (q) {
+      url += `search/${q}`;
+    }
+
+    fetch(url)
       .then(response => response.json())
       .then(response => {
-        setItems(response);
+        response.length > 0 ? setFilteredItems(response) : setnotFound(true);
       });
-
-    let query = q ? q.toLowerCase() : "";
-    setFilteredItems(items.filter(e => e.tags.toLowerCase().includes(query)));
   };
 
   const changeRoute = ({ target }) => {
@@ -25,20 +29,23 @@ export default function Search() {
 
   useEffect(() => {
     search();
-    console.log(filteredItems);
   }, [q]);
 
   return (
     <div className="w-50">
-      <input
-        onChange={changeRoute}
-        value={q}
-        type="text"
-        className="form-control form-control-lg"
-        placeholder="Type something here..."
-      />
+      <div className="d-flex justify-content-center">
+        <input
+          onChange={changeRoute}
+          value={q}
+          type="text"
+          className="form-control form-control-lg"
+          placeholder="Type something here..."
+        />
+      </div>
 
-      {filteredItems.length > 0 ? (
+      {notFound ? (
+        <NotFound />
+      ) : filteredItems.length > 0 ? (
         <ItemGrid items={filteredItems} />
       ) : (
         <ItemGrid items={items} />
