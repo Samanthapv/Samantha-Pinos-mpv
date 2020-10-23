@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default class AllItems extends Component {
   render() {
-    const { items, callback } = this.props;
+    const { items } = this.props;
     return (
       <div>
         {items.map(item => (

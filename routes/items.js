@@ -30,18 +30,16 @@ router.get("/", function(req, res, next) {
     .catch(err => res.status(500).send(err));
 });
 
-router.get("/color/:color", function(req, res, next) {
-  let color = req.params.color;
-  db(`SELECT * FROM articles WHERE colorID = ${color}`)
+//search items by tag
+
+router.get("/search/:search", function(req, res, next) {
+  let search = req.params.search;
+  db(`SELECT * FROM articles WHERE tags LIKE "%${search}%";`)
     .then(results => {
       res.send(results.data);
     })
     .catch(err => res.status(500).send(err));
 });
-
-//filter items
-//what we need http://localhost:5000/items?color=3&category=9
-//what we need 2 SELECT * FROM articles WHERE colorId = ${colorId} AND categoryId = ${categoryId}`
 
 //GET one specific item
 

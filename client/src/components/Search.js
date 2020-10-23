@@ -9,7 +9,7 @@ export default function Search() {
   let history = useHistory();
 
   const search = () => {
-    fetch(`/items/?`)
+    fetch(`/items/search/${q}`)
       .then(response => response.json())
       .then(response => {
         setItems(response);
@@ -25,6 +25,7 @@ export default function Search() {
 
   useEffect(() => {
     search();
+    console.log(filteredItems);
   }, [q]);
 
   return (

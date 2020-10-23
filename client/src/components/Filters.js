@@ -1,17 +1,26 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import queryString from "query-string";
+import ItemGrid from "./ItemGrid";
+import NotFound from "./NotFound";
+import { Link } from "react-router-dom";
 
 export default function Filters(props) {
-  let { q } = useParams();
   let [colors, setColors] = useState([]);
   let [categories, setCategories] = useState([]);
   let [color, setColor] = useState("");
   let [category, setCategory] = useState("");
-  let [showFilter, setShowFilter] = useState(false);
+  let [items, setItems] = useState([]);
+  let [notFound, setnotFound] = useState(false);
 
   useEffect(() => {
     getColors();
     getCategories();
+
+    let filter = queryString.parse(props.location.search);
+    console.log(filter.category);
+    if (filter) {
+      filterItems(filter.color, filter.category);
+    }
   }, []);
 
   const getColors = () => {
@@ -30,9 +39,7 @@ export default function Filters(props) {
       });
   };
 
-  const filterItems = () => {
-    const { callback, callback2 } = props;
-
+  const filterItems = (color, category) => {
     let url = `items/`;
     if (color || category) {
       url += `?color=${color}&category=${category}`;
@@ -41,12 +48,8 @@ export default function Filters(props) {
     fetch(url)
       .then(response => response.json())
       .then(response => {
-        response.length > 0 ? callback(response) : callback2();
+        response.length > 0 ? setItems(response) : setnotFound(true);
       });
-  };
-
-  const showFilters = () => {
-    setShowFilter(!showFilter);
   };
 
   const handleClick = (name, content) => {
@@ -56,46 +59,45 @@ export default function Filters(props) {
   return (
     <div className="container text-center">
       <div>
-        <p className="link" onClick={showFilters}>
-          Filter items
-        </p>
-        {showFilter && (
-          <div className="mb-3">
-            <ul>
-              {categories.map(item => (
-                <li
-                  className={` categories link ${
-                    category === item.id ? "selected" : "inactive"
-                  }`}
-                  key={item.id}
-                  onClick={() => handleClick("category", item.id)}
-                >
-                  {item.category_name}
-                </li>
-              ))}
-            </ul>
-
-            {colors.map(color => (
-              <button
-                className={` btn ${
-                  color === color.id ? "btn-link" : "inactive"
+        <div className="mb-3">
+          <ul>
+            {categories.map(item => (
+              <li
+                className={` categories link ${
+                  category === item.id ? "selected" : "inactive"
                 }`}
-                key={color.id}
-                onClick={() => handleClick("color", color.id)}
+                key={item.id}
+                onClick={() => handleClick("category", item.id)}
               >
-                {color.color_name}{" "}
-                <i
-                  style={{ color: color.color_name }}
-                  className="fa fa-heart"
-                  aria-hidden="true"
-                ></i>
-              </button>
+                {item.category_name}
+              </li>
             ))}
-            <button className="btn btn-info mt-3 mb-3" onClick={filterItems}>
+          </ul>
+
+          {colors.map(color => (
+            <button
+              className={` btn ${color === color.id ? "btn-link" : "inactive"}`}
+              key={color.id}
+              onClick={() => handleClick("color", color.id)}
+            >
+              {color.color_name}{" "}
+              <i
+                style={{ color: color.color_name }}
+                className="fa fa-heart"
+                aria-hidden="true"
+              ></i>
+            </button>
+          ))}
+          <Link to={`/filter?color=${color}&category=${category}`}>
+            <button
+              className="btn btn-info mt-3 mb-3"
+              onClick={() => filterItems(color, category)}
+            >
               Apply filters
             </button>
-          </div>
-        )}
+          </Link>
+        </div>
+        {!notFound ? <ItemGrid items={items} /> : <NotFound />}
       </div>
     </div>
   );
