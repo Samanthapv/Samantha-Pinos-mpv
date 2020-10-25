@@ -1,4 +1,4 @@
-CREATE TABLE `Articles` (
+CREATE TABLE IF NOT EXISTS `Articles` (
 	`id` INT NOT NULL AUTO_INCREMENT,
 	`name` varchar(45) NOT NULL,
 	`price` INT NOT NULL,
@@ -11,13 +11,13 @@ CREATE TABLE `Articles` (
 	PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `Categories` (
+CREATE TABLE IF NOT EXISTS `Categories` (
 	`id` INT NOT NULL AUTO_INCREMENT,
 	`category_name` VARCHAR(255) NOT NULL,
 	PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `Colors` (
+CREATE TABLE IF NOT EXISTS `Colors` (
 	`id` BINARY NOT NULL AUTO_INCREMENT,
 	`color_name` VARCHAR(255) NOT NULL,
 	PRIMARY KEY (`id`)

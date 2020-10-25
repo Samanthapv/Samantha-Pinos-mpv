@@ -30,6 +30,26 @@ router.get("/", function(req, res, next) {
     .catch(err => res.status(500).send(err));
 });
 
+// get items price descending
+
+router.get("/price/down", function(req, res, next) {
+  db(`SELECT * From articles ORDER BY price DESC;`)
+    .then(results => {
+      res.send(results.data);
+    })
+    .catch(err => res.status(500).send(err));
+});
+
+// get items price ascending
+
+router.get("/price/up", function(req, res, next) {
+  db(`SELECT * From articles ORDER BY price ASC;`)
+    .then(results => {
+      res.send(results.data);
+    })
+    .catch(err => res.status(500).send(err));
+});
+
 //search items by tag
 
 router.get("/search/:search", function(req, res, next) {

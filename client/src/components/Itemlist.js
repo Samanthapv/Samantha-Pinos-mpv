@@ -23,19 +23,50 @@ export default class Itemlist extends Component {
       });
   };
 
+  getItemsUp = () => {
+    fetch(`/items/price/up`)
+      .then(response => response.json())
+      .then(response => {
+        this.setState({ items: response });
+      });
+  };
+
+  getItemsDown = () => {
+    fetch(`/items/price/down`)
+      .then(response => response.json())
+      .then(response => {
+        this.setState({ items: response });
+      });
+  };
+
   render() {
     const { items } = this.state;
     return (
       <div className="container text-center mt-3">
         <div className="rotatedHeader">
           {" "}
-          <h1 className="rotatedTitle">header</h1>
+          <h1 className="rotatedTitle">midori</h1>
         </div>
-        <Link to="/filter">
-          {" "}
-          <p className="link"> Filter items </p>
-        </Link>
-
+        <div className="text-center ml-5 dot filter-links">
+          <Link to="/filter">
+            {" "}
+            <p className="link text-center filter-link">· filter items ·</p>
+          </Link>
+          <p className="link text-center filter-link">
+            · sort by price{" "}
+            <i
+              className="fa fa-arrow-up"
+              aria-hidden="true"
+              onClick={this.getItemsUp}
+            ></i>{" "}
+            <i
+              className="fa fa-arrow-down"
+              aria-hidden="true"
+              onClick={this.getItemsDown}
+            ></i>{" "}
+            ·
+          </p>
+        </div>
         <ItemGrid items={items} />
       </div>
     );

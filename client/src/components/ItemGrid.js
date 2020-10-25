@@ -6,9 +6,9 @@ export default class AllItems extends Component {
     const { items } = this.props;
     return (
       <div className="container">
-        <div className="row img__wrap ">
+        <div className="row img__wrap no-gutters ">
           {items.map(item => (
-            <div key={item.id} className="col-6 mb-4 pb-3 ">
+            <div key={item.id} className="col-6 mb-1 pb-3  ">
               <Link to={"/item/" + item.id}>
                 <img
                   className="img-fluid product-image withBorder shadow"

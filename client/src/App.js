@@ -5,6 +5,7 @@ import Itempage from "./components/Itempage";
 import Nav from "./components/Nav";
 import Cart from "./components/Cart";
 import Header from "./components/Header";
+import CheckOut from "./components/CheckOut";
 import Home from "./components/Home";
 import Search from "./components/Search";
 import Filters from "./components/Filters";
@@ -15,22 +16,20 @@ class App extends Component {
     super(props);
     this.state = {
       items: [],
-      selectedItem: "",
       itemsInTheCart: []
     };
-  }
-
-  makeSelected(item) {
-    this.setState({
-      selectedItem: item[0]
-    });
   }
 
   addItems(item) {
     this.setState({
       itemsInTheCart: [...this.state.itemsInTheCart, item]
     });
-    console.log(this.state.itemsInTheCart);
+  }
+
+  deleteItems(items) {
+    items
+      ? this.setState({ itemsInTheCart: items })
+      : this.setState({ itemsInTheCart: [] });
   }
 
   render() {
@@ -39,7 +38,7 @@ class App extends Component {
     return (
       <div>
         <Router>
-          <Header />
+          <Header cart={itemsInTheCart} />
           <Nav />
 
           <Switch>
@@ -67,14 +66,26 @@ class App extends Component {
 
             <Route
               path="/cart"
-              render={props => <Cart {...props} itemsInCart={itemsInTheCart} />}
+              render={props => (
+                <Cart
+                  {...props}
+                  itemsInCart={itemsInTheCart}
+                  callback={items => this.deleteItems(items)}
+                />
+              )}
             />
             <Route path="/search/:q?" component={Search} />
 
             <Route path="/filter/:q?" component={Filters} />
 
-            <Route path="/" exact component={Home} />
+            <Route
+              path="/checkout"
+              render={props => (
+                <CheckOut {...props} itemsInTheCart={itemsInTheCart} />
+              )}
+            />
 
+            <Route path="/" exact component={Home} />
             <div>Page not found</div>
           </Switch>
         </Router>
@@ -84,12 +95,3 @@ class App extends Component {
 }
 
 export default App;
-
-/*
-
-          same <Route path="/" component={Home}/>
-          go to page and import withRouter from r-r-dom
-
-export default withRouter(User)
-
-*/

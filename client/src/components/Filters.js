@@ -71,7 +71,7 @@ export default function Filters(props) {
             {categories.map(item => (
               <li
                 className={` categories link ${
-                  category === item.id ? "selected" : "inactive"
+                  category === item.id ? "green" : "inactive"
                 }`}
                 key={item.id}
                 onClick={() => handleClick("category", item.id)}
@@ -80,30 +80,41 @@ export default function Filters(props) {
               </li>
             ))}
           </ul>
-
-          {colors.map(color => (
-            <button
-              className={` btn ${color === color.id ? "btn-link" : "inactive"}`}
-              key={color.id}
-              onClick={() => handleClick("color", color.id)}
-            >
-              {color.color_name}{" "}
-              <i
-                style={{ color: color.color_name }}
-                className="fa fa-heart"
-                aria-hidden="true"
-              ></i>
-            </button>
-          ))}
-          <Link to={`/filter?color=${color}&category=${category}`}>
-            <button
-              className="btn btn-info mt-3 mb-3"
-              onClick={() => filterItems(color, category)}
-            >
-              Apply filters
-            </button>
-          </Link>
-          {(color || category) && <p onClick={resetFilter}>Reset filters</p>}
+          <ul>
+            {colors.map(item => (
+              <li
+                className={`filter-link ${
+                  color === item.id ? "green" : "inactive"
+                }`}
+                key={color.id}
+                onClick={() => handleClick("color", item.id)}
+              >
+                {" "}
+                {item.color_name}{" "}
+                <i
+                  className="fa fa-heart"
+                  style={{ color: item.color_name }}
+                  aria-hidden="true"
+                ></i>
+              </li>
+            ))}
+          </ul>
+          <div className="buttons">
+            <Link to={`/filter?color=${color}&category=${category}`}>
+              <button
+                className="btn btn-light filter-btn mt-2 mb-3"
+                onClick={() => filterItems(color, category)}
+              >
+                {" "}
+                apply filters{" "}
+              </button>
+            </Link>
+            {(color || category) && (
+              <p className="btn btn-link reset ml-2 " onClick={resetFilter}>
+                Reset filters
+              </p>
+            )}
+          </div>
         </div>
         {!notFound ? (
           <ItemGrid items={items} />

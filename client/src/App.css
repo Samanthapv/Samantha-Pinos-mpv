@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@900&display=swap");
+
 .nav-li {
   display: inline-block;
   text-align: center;
@@ -27,13 +29,13 @@
 }
 
 .selected {
-  color: hotpink;
+  color: green;
 }
 
 .product-image {
   object-fit: cover;
-  width: 430px;
-  height: 430px;
+  width: 530px;
+  height: 530px;
   padding: 0px;
   cursor: pointer;
 }
@@ -58,7 +60,7 @@
 .item-description,
 .item-price {
   color: white;
-  text-shadow: 2px 2px 4px #83f52c;
+  text-shadow: 2px 2px 4px black;
 }
 
 .item-page {
@@ -83,7 +85,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: greenyellow;
+  background-color: #99ff66;
   width: 530px;
   height: 530px;
 }
@@ -94,7 +96,7 @@
 }
 
 .add-button:hover {
-  color: greenyellow;
+  color: #99ff66;
 }
 
 .rotatedHeader {
@@ -105,9 +107,126 @@
   border-radius: 5px;
   transform-origin: center top;
   transform: translateX(-50%) rotate(-90deg);
+  margin-top: 40px;
 }
 .rotatedTitle {
   color: black;
-  line-height: 20px;
+  line-height: 0px;
   display: inline-block;
+  font-family: "Frank Ruhl Libre", serif;
+  font-size: 45px;
+  z-index: 100;
+}
+
+.filter-link {
+  font-size: 13px;
+  color: black;
+  display: inline;
+  margin-left: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.filter-btn {
+  margin-left: 40px;
+  background-color: green;
+  color: white;
+}
+
+.filter-btn:hover {
+  background-color: black;
+  color: white;
+}
+
+.dot {
+  color: black;
+}
+
+.icon {
+  font-size: 18px;
+  margin-left: 15px;
+}
+
+.cartNumber {
+  border-radius: 100%;
+  font-size: 12px;
+  padding-left: 2px;
+}
+
+.header {
+  padding-top: 30px;
+  height: 100px;
+  width: 200px;
+  display: inline-block;
+
+  font-size: 50px;
+  margin-left: 30px;
+  font-family: "Frank Ruhl Libre", serif;
+  background: url(header..png);
+  background-size: 200px;
+}
+
+.carousel {
+  width: 1000px;
+  height: 600px;
+  margin: auto;
+}
+
+.search-form {
+  width: 600px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #000000;
+}
+
+input:focus {
+  outline: none;
+}
+
+.green {
+  color: green;
+}
+
+.filter-link {
+  text-decoration: none;
+  text-align: center;
+  font-weight: 16px;
+  margin-right: 20px;
+  margin-bottom: 50px;
+}
+
+.reset {
+  margin-top: 5px;
+  text-decoration: underline;
+  color: #000000;
+}
+
+.notFound {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.homePage {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+.cartPic {
+  object-fit: cover;
+  width: 130px;
+  height: 130px;
+  padding: 0px;
+}
+
+.cartItem {
+  display: flex;
+  align-items: center;
 }

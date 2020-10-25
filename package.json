@@ -14,6 +14,7 @@
     }
   },
   "dependencies": {
+    "axios": "^0.21.0",
     "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",
     "debug": "~2.6.9",
@@ -26,6 +27,8 @@
     "nodemon": "^1.19.1",
     "prettier": "^1.19.1",
     "pretty-quick": "^2.0.1",
-    "query-string": "^6.13.6"
+    "query-string": "^6.13.6",
+    "react-stripe-checkout": "^2.6.3",
+    "stripe": "^8.117.0"
   }
 }

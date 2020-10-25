@@ -32,14 +32,14 @@ export default function Search() {
   }, [q]);
 
   return (
-    <div className="w-50">
+    <div className="container ">
       <div className="d-flex justify-content-center">
         <input
           onChange={changeRoute}
           value={q}
           type="text"
-          className="form-control form-control-lg"
-          placeholder="Type something here..."
+          className="form-control search-form mb-5 text-center"
+          placeholder="Type something here...🔎"
         />
       </div>
 
