@@ -9,6 +9,7 @@ import CheckOut from "./components/CheckOut";
 import Home from "./components/Home";
 import Search from "./components/Search";
 import Filters from "./components/Filters";
+import SuccessfulPurchase from "./components/SuccessfulPurchase";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 class App extends Component {
@@ -31,6 +32,10 @@ class App extends Component {
       ? this.setState({ itemsInTheCart: items })
       : this.setState({ itemsInTheCart: [] });
   }
+
+  emptyCart = () => {
+    this.setState({ itemsInTheCart: [] });
+  };
 
   render() {
     const { items, selectedItem, itemsInTheCart } = this.state;
@@ -81,9 +86,14 @@ class App extends Component {
             <Route
               path="/checkout"
               render={props => (
-                <CheckOut {...props} itemsInTheCart={itemsInTheCart} />
+                <CheckOut
+                  {...props}
+                  itemsInTheCart={itemsInTheCart}
+                  callback={this.emptyCart}
+                />
               )}
             />
+            <Route path="/success" exact component={SuccessfulPurchase} />
 
             <Route path="/" exact component={Home} />
             <div>Page not found</div>

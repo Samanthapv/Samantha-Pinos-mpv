@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import { Redirect } from "react-router";
 
 import axios from "axios";
 
@@ -8,6 +9,7 @@ const CheckOutForm = props => {
   const elements = useElements();
 
   const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const total = props.items.reduce((a, b) => {
     return a + b.price;
@@ -32,6 +34,8 @@ const CheckOutForm = props => {
           amount: total * 100 //stripe takes the amount in cents
         });
         console.log(data);
+        setSuccess(true);
+        props.callback();
 
         elements.getElement(CardElement).clear();
       } catch (error) {
@@ -43,35 +47,40 @@ const CheckOutForm = props => {
 
   console.log(!stripe || loading);
 
-  return (
-    <form className="card card-body" onSubmit={handleSubmit}>
-      <ul className="list-group">
-        {props.items &&
-          props.items.map(item => (
-            <li className="list-group-item" key={item.id}>
-              {" "}
-              {item.name}
-            </li>
-          ))}
-      </ul>
+  if (success) {
+    console.log("Redirecting...");
+    return <Redirect to="/success" />;
+  } else {
+    return (
+      <form className="card card-body" onSubmit={handleSubmit}>
+        <ul className="list-group">
+          {props.items &&
+            props.items.map(item => (
+              <li className="list-group-item" key={item.id}>
+                {" "}
+                {item.name}
+              </li>
+            ))}
+        </ul>
 
-      <h3 className="text-center my-2">Total: {` ${total} €`}</h3>
+        <h3 className="text-center my-2">Total: {` ${total} €`}</h3>
 
-      <div className="form-group">
-        <CardElement />
-      </div>
+        <div className="form-group">
+          <CardElement />
+        </div>
 
-      <button disabled={!stripe} className="btn btn-success">
-        {loading ? (
-          <div className="spinner-border text-light" role="status">
-            <span className="sr-only">Loading...</span>
-          </div>
-        ) : (
-          "Buy"
-        )}
-      </button>
-    </form>
-  );
+        <button disabled={!stripe} className="btn btn-success">
+          {loading ? (
+            <div className="spinner-border text-light" role="status">
+              <span className="sr-only">Loading...</span>
+            </div>
+          ) : (
+            "Buy"
+          )}
+        </button>
+      </form>
+    );
+  }
 };
 
 export default CheckOutForm;

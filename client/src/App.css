@@ -44,6 +44,10 @@
   border: 2px solid black;
 }
 
+.underline {
+  text-decoration: underline;
+}
+
 .img__wrap {
   position: relative;
   text-align: center;
@@ -148,6 +152,11 @@
   color: black;
 }
 
+.white {
+  color: white;
+  font-size: 20px;
+}
+
 .icon {
   font-size: 18px;
   margin-left: 15px;
@@ -229,4 +238,20 @@ input:focus {
 .cartItem {
   display: flex;
   align-items: center;
+}
+
+.centered {
+  display: flex;
+  flex-direction: column;
+  padding-top: 300px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.thanks {
+  font-family: "Frank Ruhl Libre", serif;
+  color: white;
+  font-size: 50px;
 }

@@ -13,7 +13,10 @@ function CheckOut(props) {
       <div className="container p-4">
         <div className="row h-100">
           <div className="col-md-4 offset-md-4 h-100">
-            <CheckOutForm items={props.itemsInTheCart} />
+            <CheckOutForm
+              items={props.itemsInTheCart}
+              callback={props.callback}
+            />
           </div>
         </div>
       </div>
