@@ -16,7 +16,7 @@ module.exports = async function db(query) {
       host: DB_HOST || "127.0.0.1",
       user: DB_USER || "root",
       password: DB_PASS,
-      database: DB_NAME || "shop",
+      database: DB_NAME,
       multipleStatements: true
     });
 
@@ -34,17 +34,7 @@ module.exports = async function db(query) {
         }
 
         if (!result.length) {
-          if (result.affectedRows === 0) {
-            results.error = "Action not complete";
-            console.log(err);
-            reject(err);
-            con.end();
-            return;
-          }
-
-          // push the result (which should be an OkPacket) to data
-          // germinal - removed next line because it returns an array in an array when empty set
-          // results.data.push(result);
+          results.data = result;
         } else if (result[0].constructor.name == "RowDataPacket") {
           // push each row (RowDataPacket) to data
           result.forEach(row => results.data.push(row));

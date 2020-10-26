@@ -1,17 +1,11 @@
 const express = require("express");
+var router = express.Router();
 const Stripe = require("stripe");
 const stripe = new Stripe(
   "sk_test_51HfswlLZH504GxAlxPz3jkHu7zMt5MeVmCfJmrFVo6wCFR0GZaPsjPMi6AIvDVaxdaH1DTL6ACsazS2kZYpOFUpI00hTaG5Bqs"
 );
 
-const cors = require("cors");
-
-const app = express();
-
-app.use(cors({ origin: "http://localhost:5000" }));
-app.use(express.json());
-
-app.post("/checkout", async (req, res) => {
+router.post("/checkout", async (req, res) => {
   const { id, amount } = req.body;
 
   try {
@@ -31,6 +25,4 @@ app.post("/checkout", async (req, res) => {
   }
 });
 
-app.listen(5000, () => {
-  console.log("Server on port", 5000);
-});
+module.exports = router;
