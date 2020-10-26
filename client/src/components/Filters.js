@@ -17,7 +17,7 @@ export default function Filters(props) {
     getCategories();
 
     let filter = queryString.parse(props.location.search);
-    console.log(filter.category);
+
     if (filter) {
       filterItems(filter.color, filter.category);
     }
@@ -83,6 +83,7 @@ export default function Filters(props) {
           <ul>
             {colors.map(item => (
               <li
+                key={item.id}
                 className={`filter-link ${
                   color === item.id ? "green" : "inactive"
                 }`}

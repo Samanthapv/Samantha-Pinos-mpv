@@ -12,7 +12,6 @@ app.use(cors({ origin: "http://localhost:5000" }));
 app.use(express.json());
 
 app.post("/checkout", async (req, res) => {
-  // you can get more data to find in a database, and so on
   const { id, amount } = req.body;
 
   try {
@@ -20,7 +19,7 @@ app.post("/checkout", async (req, res) => {
       amount,
       currency: "EUR",
       payment_method: id,
-      confirm: true //confirm the payment at the same time
+      confirm: true
     });
 
     console.log(payment);

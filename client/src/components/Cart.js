@@ -5,8 +5,6 @@ export default class cart extends Component {
   //delete item from cart when the x is clicked, filtering and then sending updated list to the parent
 
   deleteFromCart(id) {
-    console.log(id);
-
     const { itemsInCart, callback } = this.props;
 
     let itemList = [...itemsInCart];

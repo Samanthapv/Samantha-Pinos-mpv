@@ -27,7 +27,7 @@ const CheckOutForm = props => {
       console.log(paymentMethod);
       const { id } = paymentMethod;
       try {
-        const { data } = await axios.post("/checkout", {
+        const { data } = await axios.post("/server/checkout", {
           id,
           amount: total * 100 //stripe takes the amount in cents
         });

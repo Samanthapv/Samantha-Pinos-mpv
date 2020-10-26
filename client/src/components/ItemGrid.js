@@ -18,10 +18,12 @@ export default class AllItems extends Component {
               </Link>
 
               <div className="img__description_layer">
-                <div className="centered">
-                  <h3 className="item-description">{item.name}</h3>
-                  <h5 className="item-price">{item.price} €</h5>
-                </div>
+                <Link to={"/item/" + item.id}>
+                  <div className="centered">
+                    <h3 className="item-description">{item.name}</h3>
+                    <h5 className="item-price">{item.price} €</h5>
+                  </div>
+                </Link>
               </div>
             </div>
           ))}
