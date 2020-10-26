@@ -1,5 +1,15 @@
 # Samantha Pinos MVP
 
+## Documents
+
+- database schema:
+
+[database schema](https://docs.google.com/document/d/1VQh12-cG4rDATIN0PKsQsS6vFVCMiY8w0l2clDOelPc/edit?usp=sharing)
+
+- API routes
+
+[api routes](https://docs.google.com/document/d/1b_ZiK5qq2oxR-ChWOJYxsoJoU3iXvJyI2W8ziEElWdY/edit?usp=sharing)
+
 ## Setup
 
 ### Dependencies
@@ -26,3 +36,5 @@
 
 - Run `npm start` in project directory to start the Express server on port 5000
 - `cd client` and run `npm start` to start client server in development mode with hot reloading in port 3000.
+
+_This is a student project that was created at [CodeOp](http://codeop.tech), a full stack development bootcamp in Barcelona._
