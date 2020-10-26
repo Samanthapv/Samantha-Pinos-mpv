@@ -30,7 +30,9 @@
   DB_PASS=YOURPASSWORD
 ```
 
-- Run `npm run migrate` in the main folder of this repository, in a new terminal window. This will create a table called 'students' in your database.
+- Run `npm run migrate` in the main folder of this repository, in a new terminal window. This will create three tables articles, colors and categories.
+
+- Run `npm run seed` in the main folder as well, to fill the tables with content.
 
 ### Development
 
