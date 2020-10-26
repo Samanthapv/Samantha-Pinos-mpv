@@ -46,6 +46,7 @@
 
 .underline {
   text-decoration: underline;
+  cursor: pointer;
 }
 
 .img__wrap {
@@ -89,7 +90,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #99ff66;
+  background-color: #a0ad94;
   width: 530px;
   height: 530px;
 }
@@ -100,7 +101,7 @@
 }
 
 .add-button:hover {
-  color: #99ff66;
+  color: #a0ad94;
 }
 
 .rotatedHeader {
@@ -139,7 +140,7 @@
 
 .filter-btn {
   margin-left: 40px;
-  background-color: green;
+  background-color: #a0ad94;
   color: white;
 }
 
@@ -182,7 +183,8 @@
 }
 
 .carousel {
-  width: 1000px;
+  display: inline-block;
+  width: 1080px;
   height: 600px;
   margin: auto;
 }
@@ -254,4 +256,30 @@ input:focus {
   font-family: "Frank Ruhl Libre", serif;
   color: white;
   font-size: 50px;
+}
+
+.homePage {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.info {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 30px;
+}
+
+.social {
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding-top: 30px;
+  margin-bottom: 100px;
+}
+
+.card {
+  background-color: #a0ad94;
+  border: none;
 }

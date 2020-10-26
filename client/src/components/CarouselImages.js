@@ -28,7 +28,7 @@ export default class CarouselImages extends Component {
           <Carousel.Item>
             <img
               className="d-block w-100"
-              src="https://i.imgur.com/qPXhTF2.jpg?text=Third slide&bg=20232a"
+              src="https://i.imgur.com/ifeNE42.jpg?text=Third slide&bg=20232a"
               alt="Third slide"
             />
 

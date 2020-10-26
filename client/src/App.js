@@ -96,7 +96,11 @@ class App extends Component {
             <Route path="/success" exact component={SuccessfulPurchase} />
 
             <Route path="/" exact component={Home} />
-            <div>Page not found</div>
+            <div className="container text-center">
+              {" "}
+              <h3>Page not found</h3>
+              <img src="https://bit.ly/2G1wMzZ" alt="shop" />{" "}
+            </div>
           </Switch>
         </Router>
       </div>

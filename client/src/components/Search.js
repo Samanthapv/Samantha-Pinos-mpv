@@ -23,6 +23,10 @@ export default function Search() {
       });
   };
 
+  const reset = () => {
+    setnotFound(false);
+  };
+
   const changeRoute = ({ target }) => {
     history.push(`/search/${target.value}`);
   };
@@ -38,14 +42,17 @@ export default function Search() {
           onChange={changeRoute}
           value={q}
           type="text"
-          className="form-control search-form mb-5 text-center"
+          className="form-control search-form mb-5 text-center ml-5"
           placeholder="Type something here...🔎"
-        />
+        />{" "}
+        <button className="btn underline mb-4" onClick={reset}>
+          reset
+        </button>
       </div>
 
       {notFound ? (
         <NotFound />
-      ) : filteredItems.length > 0 ? (
+      ) : filteredItems.length > 0 || !q ? (
         <ItemGrid items={filteredItems} />
       ) : (
         <ItemGrid items={items} />
