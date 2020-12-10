@@ -7,6 +7,8 @@ var cors = require("cors");
 
 var itemsRouter = require("./routes/items");
 var colorsRouter = require("./routes/colors");
+var authRouter = require("./routes/auth");
+var usersRouter = require("./routes/users");
 var categoriesRouter = require("./routes/categories");
 var checkoutRouter = require("./routes/server");
 
@@ -23,6 +25,8 @@ app.use(express.static(path.join(__dirname, "client/build")));
 
 app.use("/items", itemsRouter);
 app.use("/colors", colorsRouter);
+app.use("/auth", authRouter);
+app.use("/users", usersRouter);
 app.use("/categories", categoriesRouter);
 app.use("/server", checkoutRouter);
 

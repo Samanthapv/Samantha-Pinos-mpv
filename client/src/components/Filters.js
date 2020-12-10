@@ -4,7 +4,7 @@ import ItemGrid from "./ItemGrid";
 import NotFound from "./NotFound";
 import { Link } from "react-router-dom";
 
-export default function Filters(props) {
+export default function CategoryNav(props) {
   let [colors, setColors] = useState([]);
   let [categories, setCategories] = useState([]);
   let [color, setColor] = useState("");

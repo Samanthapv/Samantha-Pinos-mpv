@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@900&display=swap");
 
+a {
+  color: #000000 !important;
+}
+
 .nav-li {
   display: inline-block;
   text-align: center;
@@ -282,4 +286,51 @@ input:focus {
 .card {
   background-color: #a0ad94;
   border: none;
+}
+
+.card2 {
+  background-color: #ad7584;
+  border: none;
+}
+
+.Background1 {
+  background: url("") no-repeat center center fixed;
+  background-size: cover;
+  background-position: top 200px;
+  width: 100%;
+  min-height: 100%;
+  height: 100vh;
+  position: fixed;
+  overflow: hidden;
+}
+
+.half-containers {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.welcome {
+  font-size: 50px;
+  font-family: "Frank Ruhl Libre", serif;
+  color: white;
+}
+
+.mt-n1 {
+  margin-left: -1rem !important;
+  margin-right: -1rem !important;
+}
+
+.big-margin {
+  margin-top: 100px;
+}
+
+.link2 {
+  color: white;
+  text-decoration: underline;
+}
+
+.top-section {
+  display: flex;
+  justify-content: space-between;
 }

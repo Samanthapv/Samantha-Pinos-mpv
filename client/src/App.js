@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import "./App.css";
 import Itemlist from "./components/Itemlist";
 import Itempage from "./components/Itempage";
-import Nav from "./components/Nav";
 import Cart from "./components/Cart";
-import Header from "./components/Header";
 import CheckOut from "./components/CheckOut";
+import Header from "./components/Header";
+import Login from "./components/Login";
+import SIForm from "./components/SIForm";
 import Home from "./components/Home";
 import Search from "./components/Search";
 import Filters from "./components/Filters";
@@ -44,7 +45,6 @@ class App extends Component {
       <div>
         <Router>
           <Header cart={itemsInTheCart} />
-          <Nav />
 
           <Switch>
             <Route
@@ -68,6 +68,10 @@ class App extends Component {
                 />
               )}
             />
+
+            <Route path="/login" exact component={Login} />
+
+            <Route path="/register" render={props => <SIForm {...props} />} />
 
             <Route
               path="/cart"

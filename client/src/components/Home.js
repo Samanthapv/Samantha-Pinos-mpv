@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import CarouselImages from "./CarouselImages";
 import Info from "./Info";
+
 export default class Home extends Component {
   render() {
     return (
