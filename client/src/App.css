@@ -344,4 +344,17 @@ input:focus {
 
 .orderedItem {
   display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.orders {
+  display: flex;
+  justify-content: center;
+}
+
+.img-div {
+  height: 500px;
+  background: url(anna-baker-pd8_p6xWMX8-unsplash.jpg);
+  background-size: 800px;
 }
