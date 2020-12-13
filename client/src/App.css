@@ -334,3 +334,14 @@ input:focus {
   display: flex;
   justify-content: space-between;
 }
+
+.orderPic {
+  object-fit: cover;
+  width: 50px;
+  height: 50px;
+  padding: 0px;
+}
+
+.orderedItem {
+  display: flex;
+}

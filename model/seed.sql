@@ -20,18 +20,19 @@ insert INTO Colors (color_name) VALUES ("metallic");
 insert INTO Colors (color_name) VALUES ("yellow");
 insert INTO Colors (color_name) VALUES ("grey");
 insert INTO Colors (color_name) VALUES ("purple");
+insert INTO Colors (color_name) VALUES ("red");
 
 INSERT INTO Articles  (name, price, picture, description, colorId, categoryId, tags) VALUE ("The A-line mini skirt", "35.99", "https://bit.ly/35xApWV", "A classic mini skirt with a hidden zip at the back and a subtle a-line shape.", "3", "5", "skirt, a-line, pattern, black, checkered");
 INSERT INTO Articles (name, price, picture, description, colorId, categoryId, tags) VALUE ("The Snakeskin ankle boots", "50", "https://bit.ly/3kwa4if", "Faux snakeskin ankle boots that feature a side zip and a high heel.", "9", "1", "boots, booties, ankle, snakeskin, shoes, brown");
 INSERT INTO Articles (name, price, picture, description, colorId, categoryId, tags) VALUE ("The Faux leather dress shoes", "40", "https://bit.ly/34sZrHj", "Faux leather dress shoes that feature a high sole.", "3",  "1", "dressy, shoes, black, laces");
-INSERT INTO Articles (name, price, picture, description, colorId, categoryId, tags) VALUE ("The Mini Bucket Bag", "25", "https://bit.ly/3orK8Xn", "A mini faux leather hand bag featuring magnetic closure, inner zip compartment and a removable and adjustable longer strap.", "13", "9", "accessory, bag, bucket, yellow, vegan, leather");
+INSERT INTO Articles (name, price, picture, description, colorId, categoryId, tags) VALUE ("The Mini Bucket Bag", "25", "https://bit.ly/3orK8Xn", "A mini faux leather hand bag featuring magnetic closure, inner zip compartment and a removable and adjustable longer strap.", "13", "8", "accessory, bag, bucket, yellow, vegan, leather");
 INSERT INTO Articles (name, price, picture, description, colorId, categoryId, tags) VALUE ("The Long Sleeve Blouse", "20", "https://bit.ly/31Kndgq", "A classic blouse with a point collar button-down front and a rounded hemline. A standout look!", "11",  "3", "top, shirt, blue, black, pattern, blouse");
 INSERT INTO Articles (name, price, picture, description, colorId, categoryId, tags) VALUE ("The Lace Trim Collar Sweater", "30", "https://bit.ly/37Eioch", "A classic crewneck sweater only better – featuring a sailor lace trim collar!", "10", "3", "blouse, neck, beige, longsleeve, top");
-INSERT INTO Articles (name, price, picture, description, colorId, categoryId, tags) VALUE ("Long-sleeve Ruche Top", "25", "https://bit.ly/3msJTtz", "A long sleeve ruched top – cotton fabric and a centre drawstring to create as little or as much ruching as u want.", "16", "3", "blouse, ruche, red, longsleeve, top");
-INSERT INTO Articles (name, price, picture, description, colorId, categoryId, tags) VALUE ("The Bucket Hat", "12", "https://bit.ly/2J6ZbFY", "A bucket hat with a wide, sloping brim and classic seam detailing.", "9", "9", "hat, accessory, brown");
+INSERT INTO Articles (name, price, picture, description, colorId, categoryId, tags) VALUE ("Long-sleeve Ruche Top", "25", "https://bit.ly/3msJTtz", "A long sleeve ruched top – cotton fabric and a centre drawstring to create as little or as much ruching as u want.", "14", "3", "blouse, ruche, red, longsleeve, top");
+INSERT INTO Articles (name, price, picture, description, colorId, categoryId, tags) VALUE ("The Bucket Hat", "12", "https://bit.ly/2J6ZbFY", "A bucket hat with a wide, sloping brim and classic seam detailing.", "7", "8", "hat, accessory, brown");
 INSERT INTO Articles (name, price, picture, description, colorId, categoryId, tags) VALUE ("The Super-soft Tee", "15", "https://bit.ly/2HscOiE", "This soft lightweight tee can be used as the perfect base layer. Wide round neckline and slightly capped sleeves.", "7", "3", "t-shirt, top, cotton, green");
 INSERT INTO Articles (name, price, picture, description, colorId, categoryId, tags) VALUE ("The Classic Ribbed Beanie", "12", "https://bit.ly/35AqK1R", "A classic ribbed beanie with a rolled up hem and thick rib knit.
-", "3", "9", "t-shirt, top, cotton, green");
+", "3", "8", "t-shirt, top, cotton, green");
 INSERT INTO Articles (name, price, picture, description, colorId, categoryId, tags) VALUE ("The Soft Culottes", "20", "https://bit.ly/3jutVwY", "Soft feel culottes that feature hidden side pockets.
 ", "11", "4", "culottes,pants,multicolor,pattern");
 INSERT INTO Articles (name, price, picture, description, colorId, categoryId, tags) VALUE ("The Cotton T-shirt", "18", "https://bit.ly/3dWyRK1", "Soft cotton t-shirt with colorful print", "4", "3", "top, cotton, white, print");

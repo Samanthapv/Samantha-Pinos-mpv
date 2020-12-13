@@ -29,7 +29,7 @@ export default class Itempage extends Component {
 
   render() {
     const { item } = this.state;
-    const { callback } = this.props;
+    const { callback, cart, userId } = this.props;
     return (
       <div className="container text-center item-page">
         {item && (
@@ -43,7 +43,12 @@ export default class Itempage extends Component {
               <h3>{item.name}</h3>
               <h5>{`${item.price} €`}</h5>
               <p>{item.description}</p>
-              <AddItem item={item} callback={callback} />
+              <AddItem
+                item={item}
+                callback={callback}
+                cart={cart}
+                userId={userId}
+              />
             </div>
           </div>
         )}

@@ -34,10 +34,18 @@ router.post("/login", async (req, res) => {
   }
 });
 
-router.get("/profile", userShouldBeLoggedIn, (req, res) => {
-  res.send({
-    message: "Here is the PROTECTED data for user " + req.user_id
-  });
+router.get("/profile", userShouldBeLoggedIn, async (req, res) => {
+  try {
+    const results = await db(`SELECT * FROM users WHERE id = "${req.user_id}"`);
+
+    res.send({
+      message: results.data[0]
+    });
+  } catch (err) {
+    res.status(400).send({ message: err.message });
+  }
+
+  console.log(message);
 });
 
 module.exports = router;

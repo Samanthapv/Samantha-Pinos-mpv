@@ -48,8 +48,9 @@ class Login extends React.Component {
       },
       data: { user_id: userID }
     })
-      .then(result => <Redirect to="/" />)
+      .then(result => console.log(result))
       .catch(error => console.log(error));
+    this.props.history.push(`/`);
   };
 
   render() {

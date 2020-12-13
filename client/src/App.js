@@ -9,7 +9,10 @@ import Login from "./components/Login";
 import SIForm from "./components/SIForm";
 import Home from "./components/Home";
 import Search from "./components/Search";
+import PrivateRoute from "./components/PrivateRoute";
+import ProfilePage from "./components/ProfilePage";
 import Filters from "./components/Filters";
+import axios from "axios";
 import SuccessfulPurchase from "./components/SuccessfulPurchase";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -18,9 +21,25 @@ class App extends Component {
     super(props);
     this.state = {
       items: [],
-      itemsInTheCart: []
+      itemsInTheCart: [],
+      userData: ""
     };
   }
+
+  componentDidMount() {
+    this.requestData();
+  }
+
+  requestData = () => {
+    axios("/auth/profile", {
+      method: "GET",
+      headers: {
+        "x-access-token": localStorage.getItem("token")
+      }
+    })
+      .then(result => this.setState({ userData: result.data.message }))
+      .catch(error => console.log(error));
+  };
 
   addItems(item) {
     this.setState({
@@ -39,12 +58,12 @@ class App extends Component {
   };
 
   render() {
-    const { items, selectedItem, itemsInTheCart } = this.state;
+    const { items, selectedItem, itemsInTheCart, userData } = this.state;
 
     return (
       <div>
         <Router>
-          <Header cart={itemsInTheCart} />
+          <Header cart={itemsInTheCart} user={userData} />
 
           <Switch>
             <Route
@@ -65,6 +84,8 @@ class App extends Component {
                   {...props}
                   selectedItem={selectedItem}
                   callback={item => this.addItems(item)}
+                  cart={itemsInTheCart.length === 0 ? 0 : itemsInTheCart.length}
+                  userId={userData.id}
                 />
               )}
             />
@@ -86,6 +107,8 @@ class App extends Component {
             <Route path="/search/:q?" component={Search} />
 
             <Route path="/filter/:q?" component={Filters} />
+
+            <PrivateRoute exact path="/profile/:id" component={ProfilePage} />
 
             <Route
               path="/checkout"

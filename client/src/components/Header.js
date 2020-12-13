@@ -1,40 +1,61 @@
-import React, { useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation, useHistory } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
 import Nav from "./Nav";
 
 export default function Header(props) {
   let location = useLocation();
+  let history = useHistory();
+  let [login, setLogin] = useState(false);
 
   useEffect(() => {
-    console.log(location.pathname === "/login");
-  }, []);
+    let token = localStorage.getItem("token");
+
+    token ? setLogin(true) : setLogin(false);
+  }, [login]);
 
   let logOut = () => {
     localStorage.clear();
-    props.history.push(`/login`);
+    setLogin(false);
+    history.push(`/login`);
   };
 
   if (location.pathname === "/login" || location.pathname === "/register") {
     return null;
   } else {
     return (
-      <div className="header-box text-center mt-3 ml-3 mr-3">
-        <i class="fas fa-sign-in-alt"></i>
+      <div className="header-box text-center mt-3 ml-5 mr-5">
         <div className="top-section text-dark">
-          <Dropdown>
-            <Dropdown.Toggle
-              variant="link"
-              id="dropdown-basic"
-            ></Dropdown.Toggle>
+          {!login ? (
+            <Link to="/login" className="dot">
+              <p>
+                log in <i className="fas fa-sign-in-alt"></i>
+              </p>
+            </Link>
+          ) : (
+            <Dropdown>
+              <Dropdown.Toggle
+                variant="link"
+                id="dropdown-basic"
+                className="text-dark"
+              >
+                hey there, {props.user.name} ❤
+              </Dropdown.Toggle>
 
-            <Dropdown.Menu>
-              <Dropdown.Item href="#/action-1">My account</Dropdown.Item>
-              <Dropdown.Item href="#/action-2" onClick={logOut}>
-                Log out
-              </Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
+              <Dropdown.Menu>
+                <Link
+                  to={props.user.id && `/profile/${props.user.id}`}
+                  className="dot"
+                >
+                  <Dropdown.Item href="#/action-1">my account</Dropdown.Item>
+                </Link>
+                <Dropdown.Divider />
+                <Dropdown.Item href="#/action-2" onClick={logOut}>
+                  log out
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          )}
 
           <ul className="icon text-right mr-3">
             <Link to="/search?q" className="dot">

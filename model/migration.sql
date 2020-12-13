@@ -1,11 +1,12 @@
-CREATE TABLE `Articles` (
+
+ CREATE TABLE `Articles` (
 	`id` INT NOT NULL AUTO_INCREMENT,
-	`name` VARCHAR(255) NOT NULL,
+	`name` varchar(45) NOT NULL,
 	`price` INT NOT NULL,
-	`picture` VARCHAR(255) NOT NULL,
-	`description` VARCHAR(255) NOT NULL,
-	`colorId` INT NOT NULL,
-	`categoryId` INT NOT NULL,
+	`picture` varchar(255) NOT NULL,
+	`description` varchar(500) NOT NULL,
+	`colorId` INT(40) NOT NULL,
+	`categoryId` INT(255) NOT NULL,
 	`tags` VARCHAR(255) NOT NULL,
 	PRIMARY KEY (`id`)
 );
@@ -29,14 +30,20 @@ CREATE TABLE `Users` (
 	`password` VARCHAR(255) NOT NULL,
 	`email` VARCHAR(255) NOT NULL,
 	`address` VARCHAR(255) NOT NULL,
-	`order` INT,
 	PRIMARY KEY (`id`)
 );
 
 CREATE TABLE `Orders` (
 	`id` INT NOT NULL AUTO_INCREMENT,
-	`article_id` INT NOT NULL,
+	`userId` INT NOT NULL,
 	`date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY (`id`,`userId`)
+);
+
+CREATE TABLE `OrderDetails` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`orderId` INT NOT NULL,
+	`ArticleId` INT NOT NULL,
 	PRIMARY KEY (`id`)
 );
 
@@ -44,6 +51,8 @@ ALTER TABLE `Articles` ADD CONSTRAINT `Articles_fk0` FOREIGN KEY (`colorId`) REF
 
 ALTER TABLE `Articles` ADD CONSTRAINT `Articles_fk1` FOREIGN KEY (`categoryId`) REFERENCES `Categories`(`id`);
 
-ALTER TABLE `Users` ADD CONSTRAINT `Users_fk0` FOREIGN KEY (`order`) REFERENCES `Orders`(`id`);
+ALTER TABLE `Orders` ADD CONSTRAINT `Orders_fk0` FOREIGN KEY (`userId`) REFERENCES `Users`(`id`);
 
-ALTER TABLE `Orders` ADD CONSTRAINT `Orders_fk0` FOREIGN KEY (`article_id`) REFERENCES `Articles`(`id`);
+ALTER TABLE `OrderDetails` ADD CONSTRAINT `OrderDetails_fk0` FOREIGN KEY (`orderId`) REFERENCES `Orders`(`id`);
+
+ALTER TABLE `OrderDetails` ADD CONSTRAINT `OrderDetails_fk1` FOREIGN KEY (`ArticleId`) REFERENCES `Articles`(`id`);

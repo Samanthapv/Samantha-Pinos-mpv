@@ -11,6 +11,7 @@ var authRouter = require("./routes/auth");
 var usersRouter = require("./routes/users");
 var categoriesRouter = require("./routes/categories");
 var checkoutRouter = require("./routes/server");
+var ordersRouter = require("./routes/orders");
 
 var app = express();
 
@@ -29,6 +30,7 @@ app.use("/auth", authRouter);
 app.use("/users", usersRouter);
 app.use("/categories", categoriesRouter);
 app.use("/server", checkoutRouter);
+app.use("/orders", ordersRouter);
 
 // Anything that doesn't match the above, send back index.html
 app.get("*", (req, res) => {
