@@ -15,6 +15,14 @@ const CheckOutForm = props => {
     return a + b.price;
   }, 0);
 
+  const makeConfirmed = () => {
+    let userId = props.id;
+    console.log(userId);
+    axios.put("/orders", { userId }).then(result => {
+      console.log(result.data, "order confirmed");
+    });
+  };
+
   const handleSubmit = async e => {
     e.preventDefault();
     console.log(props.itemsInCart);
@@ -49,6 +57,7 @@ const CheckOutForm = props => {
 
   if (success) {
     console.log("Redirecting...");
+    makeConfirmed();
     return <Redirect to="/success" />;
   } else {
     return (

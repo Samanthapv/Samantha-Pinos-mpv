@@ -44,8 +44,6 @@ router.get("/profile", userShouldBeLoggedIn, async (req, res) => {
   } catch (err) {
     res.status(400).send({ message: err.message });
   }
-
-  console.log(message);
 });
 
 module.exports = router;

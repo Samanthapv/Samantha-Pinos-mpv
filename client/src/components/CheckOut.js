@@ -16,6 +16,7 @@ function CheckOut(props) {
             <CheckOutForm
               items={props.itemsInTheCart}
               callback={props.callback}
+              id={props.id}
             />
           </div>
         </div>

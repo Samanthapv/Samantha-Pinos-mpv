@@ -37,17 +37,14 @@ router.get("/", function(req, res, next) {
     .catch(err => res.status(500).send(err));
 });
 
-// DELETE a plan from the DB
-router.delete("/:id", function(req, res, next) {
-  let id = req.params.id;
+//UPDATE ADDRESS
 
-  db(`DELETE FROM plans WHERE id = ${id};`)
+router.put("/", (req, res) => {
+  const { userId, address } = req.body;
+
+  db(`UPDATE Users SET address = "${address}" WHERE id = ${userId}`)
     .then(results => {
-      db("SELECT * FROM plans;")
-        .then(results => {
-          res.send(results.data);
-        })
-        .catch(err => res.status(500).send(err));
+      res.send(results.data);
     })
     .catch(err => res.status(500).send(err));
 });

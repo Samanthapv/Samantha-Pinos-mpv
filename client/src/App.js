@@ -22,11 +22,16 @@ class App extends Component {
     this.state = {
       items: [],
       itemsInTheCart: [],
-      userData: ""
+      userData: "",
+      login: ""
     };
   }
 
   componentDidMount() {
+    let token = localStorage.getItem("token");
+
+    token ? this.setState({ login: true }) : this.setState({ login: false });
+
     this.requestData();
   }
 
@@ -37,7 +42,8 @@ class App extends Component {
         "x-access-token": localStorage.getItem("token")
       }
     })
-      .then(result => this.setState({ userData: result.data.message }))
+      .then(result => console.log(result.data.message))
+      //this.setState({ userData: result.data.message }))
       .catch(error => console.log(error));
   };
 
@@ -46,6 +52,10 @@ class App extends Component {
       itemsInTheCart: [...this.state.itemsInTheCart, item]
     });
   }
+
+  logOut = () => {
+    this.setState({ login: !this.state.login, userData: "" });
+  };
 
   deleteItems(items) {
     items
@@ -58,12 +68,17 @@ class App extends Component {
   };
 
   render() {
-    const { items, selectedItem, itemsInTheCart, userData } = this.state;
+    const { items, selectedItem, itemsInTheCart, userData, login } = this.state;
 
     return (
       <div>
         <Router>
-          <Header cart={itemsInTheCart} user={userData} />
+          <Header
+            cart={itemsInTheCart}
+            user={userData}
+            login={login}
+            callback={this.logOut}
+          />
 
           <Switch>
             <Route
@@ -90,7 +105,16 @@ class App extends Component {
               )}
             />
 
-            <Route path="/login" exact component={Login} />
+            <Route
+              path="/login"
+              render={props => (
+                <Login
+                  {...props}
+                  callback={this.logOut}
+                  callback2={this.requestData}
+                />
+              )}
+            />
 
             <Route path="/register" render={props => <SIForm {...props} />} />
 
@@ -117,6 +141,7 @@ class App extends Component {
                   {...props}
                   itemsInTheCart={itemsInTheCart}
                   callback={this.emptyCart}
+                  id={userData.id}
                 />
               )}
             />

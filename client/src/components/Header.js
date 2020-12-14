@@ -6,17 +6,11 @@ import Nav from "./Nav";
 export default function Header(props) {
   let location = useLocation();
   let history = useHistory();
-  let [login, setLogin] = useState(false);
-
-  useEffect(() => {
-    let token = localStorage.getItem("token");
-
-    token ? setLogin(true) : setLogin(false);
-  }, [login]);
+  let login = props.login;
 
   let logOut = () => {
     localStorage.clear();
-    setLogin(false);
+    props.callback();
     history.push(`/login`);
   };
 

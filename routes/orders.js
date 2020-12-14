@@ -11,7 +11,7 @@ router.get("/:userId", function(req, res, next) {
   const { userId } = req.params;
   console.log(userId);
   db(
-    `SELECT * FROM Orders INNER JOIN OrderDetails ON Orders.id = OrderDetails.orderId INNER JOIN Articles ON OrderDetails.ArticleId = Articles.id WHERE userId= ${userId} ORDER BY Orders.id;`
+    `SELECT * FROM orders INNER JOIN OrderDetails ON Orders.confirmed=1 AND Orders.id = OrderDetails.orderId INNER JOIN Articles ON OrderDetails.ArticleId = Articles.id WHERE orders.confirmed=1 AND orders.UserId=${userId} ORDER BY orders.id;`
   )
     .then(results => {
       const groupBy = key => array =>
@@ -68,6 +68,24 @@ router.post("/item", function(req, res, next) {
       ("${id.id}", "${ArticleId}");`)
       .then(results => {
         console.log("item inserted").catch(err => res.status(500).send(err));
+      })
+      .catch(err => res.status(500).send(err));
+  });
+});
+
+// set order as complete when payment goes through
+
+router.put("/", (req, res) => {
+  const { userId } = req.body;
+  db(
+    `SELECT * FROM Orders where userId = ${userId} ORDER BY id DESC LIMIT 0, 1;`
+  ).then(results => {
+    res.send(results);
+    let id = results.data[0];
+    console.log(id.id);
+    db(`UPDATE Orders SET confirmed = 1 WHERE id = ${id.id}`)
+      .then(results => {
+        res.send(results.data);
       })
       .catch(err => res.status(500).send(err));
   });

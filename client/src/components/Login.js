@@ -50,6 +50,8 @@ class Login extends React.Component {
     })
       .then(result => console.log(result))
       .catch(error => console.log(error));
+    this.props.callback();
+    this.props.callback2();
     this.props.history.push(`/`);
   };
 

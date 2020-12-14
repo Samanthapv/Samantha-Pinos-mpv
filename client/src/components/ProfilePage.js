@@ -5,6 +5,7 @@ import axios from "axios";
 export default function ProfilePage(props) {
   let [orders, setOrders] = useState([]);
   let [userData, setUserData] = useState("");
+  const [address, setAddress] = useState("");
   let userId = props.match.params.id;
 
   useEffect(() => {
@@ -34,6 +35,18 @@ export default function ProfilePage(props) {
       });
   };
 
+  const addressSubmit = async event => {
+    event.preventDefault();
+
+    try {
+      await axios.put("/users", { userId, address }).then(result => {
+        console.log(result.data, "address changed");
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="orders">
       <div className="w-50 mr-5">
@@ -42,13 +55,26 @@ export default function ProfilePage(props) {
           my account{" "}
         </div>
         <div className="w-100 border p-5 pl-5 ml-5 mb-5 mt-3 rounded shadow">
-          <h3 className="text-center mb-5">my address</h3>
+          <h3 className="text-center mb-4">my address</h3>
 
-          <p>This is where your orders will be send to:</p>
-          {userData.address}
+          <p className="text-center">
+            This is where your orders will be send to:
+          </p>
+
+          <div className="flex flex-row justify-center">
+            <input
+              className="cursor text-center border-b-2 border-black border-dotted w-100 "
+              type="text"
+              placeholder={address ? address : userData.address}
+              defaultValue={address}
+              onChange={e => setAddress(e.target.value)}
+            />
+          </div>
+
           <button
             type="submit"
-            className="btn add-button btn-block mb-2 shadow-sm"
+            className="btn add-button btn-block mb-2 mt-3 shadow-sm"
+            onClick={addressSubmit}
           >
             {" "}
             Edit <i class="fas fa-edit    "></i>{" "}
