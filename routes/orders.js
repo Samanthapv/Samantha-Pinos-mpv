@@ -55,7 +55,7 @@ router.post("/", function(req, res, next) {
 //add item to last order made by user
 
 router.post("/item", function(req, res, next) {
-  const { userId, ArticleId } = req.body;
+  const { userId, ArticleId, Size } = req.body;
   console.log(userId, ArticleId);
 
   db(
@@ -64,8 +64,16 @@ router.post("/item", function(req, res, next) {
     res.send(results);
     let id = results.data[0];
     console.log(id.id);
-    db(`INSERT INTO OrderDetails (orderId, ArticleId) VALUES
-      ("${id.id}", "${ArticleId}");`)
+
+    let sql = "INSERT INTO OrderDetails (orderId, ArticleId";
+
+    if (Size) {
+      sql += `, Size) VALUES ("${id.id}", "${ArticleId}", "${Size}");`;
+    } else {
+      sql += `) VALUES ("${id.id}", "${ArticleId}");`;
+    }
+
+    db(sql)
       .then(results => {
         console.log("item inserted").catch(err => res.status(500).send(err));
       })

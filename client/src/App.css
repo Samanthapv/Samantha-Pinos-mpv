@@ -358,3 +358,8 @@ input:focus {
   background: url(anna-baker-pd8_p6xWMX8-unsplash.jpg);
   background-size: 800px;
 }
+
+.addItem {
+  display: flex;
+  justify-content: center;
+}

@@ -1,11 +1,15 @@
 import React, { Component } from "react";
 import AddItem from "./AddItem";
 
+let clothesSize = ["XS", "S", "M", "L", "XL"];
+let shoeSize = [36, 37, 38, 39, 40, 41];
+
 export default class Itempage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      item: null
+      item: null,
+      size: ""
     };
   }
 
@@ -27,11 +31,16 @@ export default class Itempage extends Component {
       });
   };
 
+  selectSize = e => {
+    e.preventDefault();
+    this.setState({ size: e.target.value });
+  };
+
   render() {
-    const { item } = this.state;
+    const { item, size } = this.state;
     const { callback, cart, userId } = this.props;
     return (
-      <div className="container text-center item-page">
+      <div className="container text-center item-page mb-5">
         {item && (
           <div className="product-page">
             <img
@@ -43,12 +52,40 @@ export default class Itempage extends Component {
               <h3>{item.name}</h3>
               <h5>{`${item.price} €`}</h5>
               <p>{item.description}</p>
-              <AddItem
-                item={item}
-                callback={callback}
-                cart={cart}
-                userId={userId}
-              />
+              <div className="addItem">
+                {item.categoryId !== 8 && (
+                  <select
+                    className="form-group form-control mr-2 w-25 mdb-select md-outline colorful-select dropdown-primary shadow"
+                    name="goal"
+                    value={size}
+                    onChange={this.selectSize}
+                  >
+                    <option
+                      value="DEFAULT"
+                      selected="selected"
+                      className="pr-3"
+                    >
+                      ...
+                    </option>
+
+                    {item.categoryId === 1
+                      ? shoeSize.map(size => (
+                          <option value={size}>{size}</option>
+                        ))
+                      : clothesSize.map(size => (
+                          <option value={size}>{size}</option>
+                        ))}
+                  </select>
+                )}
+
+                <AddItem
+                  item={item}
+                  callback={callback}
+                  cart={cart}
+                  userId={userId}
+                  Size={size}
+                />
+              </div>
             </div>
           </div>
         )}

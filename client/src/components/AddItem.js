@@ -21,6 +21,9 @@ export default function AddItem(props) {
   };
 
   let addToCart = selectedItem => {
+    let Size = props.Size;
+    console.log(Size);
+
     console.log(props.cart === 0);
     if (!login) {
       props.callback(selectedItem);
@@ -32,9 +35,15 @@ export default function AddItem(props) {
 
       props.callback(selectedItem);
 
-      axios.post("/orders/item", { userId, ArticleId }).then(result => {
-        console.log(result.data, "item posted");
-      });
+      if (Size) {
+        axios.post("/orders/item", { userId, ArticleId, Size }).then(result => {
+          console.log(result.data, "item posted");
+        });
+      } else {
+        axios.post("/orders/item", { userId, ArticleId }).then(result => {
+          console.log(result.data, "item posted");
+        });
+      }
     }
   };
 
