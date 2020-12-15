@@ -1,8 +1,9 @@
 {
-  "name": "testweekfive",
+  "name": "midori",
   "version": "0.0.0",
-  "author": "Germinal Camps for CodeOp",
-  "private": true,
+  "engines": {
+    "node": "14.13.1"
+  },
   "scripts": {
     "start": "nodemon ./bin/www",
     "migrate": "node model/database migration.sql",
