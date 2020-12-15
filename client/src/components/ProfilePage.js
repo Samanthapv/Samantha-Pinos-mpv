@@ -83,29 +83,38 @@ export default function ProfilePage(props) {
 
       <div className=" border p-5 pl-5 mr-5 ml-5 mb-5 mt-3 w-50 rounded shadow">
         <h3 className="text-center mb-5">my orders</h3>
-        {orders.map(function(order) {
-          var items = order.map(function(item) {
+        {orders.length < 1 ? (
+          <h5 className="text-muted text-center">
+            You don't have any orders yet.
+          </h5>
+        ) : (
+          orders.map(function(order) {
+            var items = order.map(function(item) {
+              return (
+                <div className="orderedItem">
+                  <img src={item.picture} className="orderPic" />
+                  <p>
+                    {item.name} | {item.price} €{" "}
+                  </p>
+                </div>
+              );
+            });
+
             return (
-              <div className="orderedItem">
-                <img src={item.picture} className="orderPic" />
-                <p>
-                  {item.name} | {item.price} €{" "}
-                </p>
+              <div>
+                <strong>
+                  <p className="text-center mb-4">
+                    {format(
+                      new Date(order[order.length - 1].date),
+                      "dd/MM/yyyy"
+                    )}
+                  </p>
+                </strong>
+                {items}
               </div>
             );
-          });
-
-          return (
-            <div>
-              <strong>
-                <p className="text-center mb-4">
-                  {format(new Date(order[order.length - 1].date), "dd/MM/yyyy")}
-                </p>
-              </strong>
-              {items}
-            </div>
-          );
-        })}
+          })
+        )}
       </div>
     </div>
   );

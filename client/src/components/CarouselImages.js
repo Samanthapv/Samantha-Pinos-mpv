@@ -13,7 +13,7 @@ export default class CarouselImages extends Component {
               alt="First slide"
             />
             <Carousel.Caption>
-              <h2 className="carouTitle">Hello Autumn!</h2>
+              <h2 className="carouTitle">Look great any season!</h2>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
