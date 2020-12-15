@@ -9,9 +9,9 @@ export default class Home extends Component {
         <CarouselImages />
         <Info />
         <div className="social">
-          <i class="fab fa-twitter"></i>
-          <i class="fab fa-facebook"></i>
-          <i class="fab fa-instagram"></i>
+          <i className="fab fa-twitter"></i>
+          <i className="fab fa-facebook"></i>
+          <i className="fab fa-instagram"></i>
         </div>
       </div>
     );

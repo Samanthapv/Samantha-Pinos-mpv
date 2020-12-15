@@ -17,7 +17,6 @@ const CheckOutForm = props => {
 
   const makeConfirmed = () => {
     let userId = props.id;
-    console.log(userId);
     axios.put("/orders", { userId }).then(result => {
       console.log(result.data, "order confirmed");
     });
@@ -25,7 +24,6 @@ const CheckOutForm = props => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    console.log(props.itemsInCart);
 
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
@@ -34,14 +32,13 @@ const CheckOutForm = props => {
     setLoading(true);
 
     if (!error) {
-      console.log(paymentMethod);
       const { id } = paymentMethod;
       try {
         const { data } = await axios.post("/server/checkout", {
           id,
           amount: total * 100 //stripe takes the amount in cents
         });
-        console.log(data);
+
         setSuccess(true);
         props.callback();
 

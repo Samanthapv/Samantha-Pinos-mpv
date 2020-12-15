@@ -22,16 +22,12 @@ export default function AddItem(props) {
 
   let addToCart = selectedItem => {
     let Size = props.Size;
-    console.log(Size);
 
-    console.log(props.cart === 0);
     if (!login) {
       props.callback(selectedItem);
     } else {
       let ArticleId = selectedItem.id;
       let { userId } = props;
-
-      console.log(ArticleId, userId);
 
       props.callback(selectedItem);
 

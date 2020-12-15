@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link, useLocation, useHistory } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
 import Nav from "./Nav";

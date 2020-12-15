@@ -1,7 +1,6 @@
 import React from "react";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
-import { Redirect } from "react-router";
 
 class Login extends React.Component {
   constructor(props) {
@@ -34,7 +33,6 @@ class Login extends React.Component {
         this.setState({ loginStatus: true });
         localStorage.setItem("token", result.data.token);
         this.requestData();
-        console.log(result.data.message, result.data.token);
       })
       .catch(error => this.setState({ loginStatus: false, error: error }));
   };
@@ -57,9 +55,9 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div class="container-fluid card">
-        <div class="row no-gutter ">
-          <div class="col-md-6 d-none d-md-flex no-gutter mt-n1">
+      <div className="container-fluid card">
+        <div className="row no-gutter ">
+          <div className="col-md-6 d-none d-md-flex no-gutter mt-n1">
             <img
               src="https://i.imgur.com/fyneG6q.jpeg"
               alt="login-pic"
@@ -68,7 +66,7 @@ class Login extends React.Component {
             <h1 className="rotatedHeader welcome">midori</h1>
           </div>
 
-          <div class="col-md-6 card">
+          <div className="col-md-6 card">
             <div className="text-right text-white mt-2">
               {" "}
               <NavLink to="/itemlist" classname="link2">
@@ -76,14 +74,14 @@ class Login extends React.Component {
               </NavLink>{" "}
             </div>
 
-            <div class="login d-flex align-items-center py-5">
-              <div class="container">
-                <div class="row">
-                  <div class="col-lg-10 col-xl-7 mx-auto text-center mb-5 big-margin">
+            <div className="login d-flex align-items-center py-5">
+              <div className="container">
+                <div className="row">
+                  <div className="col-lg-10 col-xl-7 mx-auto text-center mb-5 big-margin">
                     <h1 className="welcome text-center mt-5">welcome back!</h1>
 
                     <form>
-                      <div class="form-group mb-3">
+                      <div className="form-group mb-3">
                         <input
                           value={this.state.username}
                           onChange={this.handleChange}
@@ -93,7 +91,7 @@ class Login extends React.Component {
                           className="form-control border-0 shadow-sm px-4 text-center"
                         />
                       </div>
-                      <div class="form-group mb-3">
+                      <div className="form-group mb-3">
                         <input
                           value={this.state.password}
                           onChange={this.handleChange}
@@ -103,7 +101,7 @@ class Login extends React.Component {
                           className="form-control border-0 shadow-sm px-4 text-center"
                         />
                       </div>
-                      <div class="text-center">
+                      <div className="text-center">
                         <p className="text-white">
                           {" "}
                           do not have an account?{" "}
@@ -113,7 +111,7 @@ class Login extends React.Component {
                       <button
                         onClick={e => this.login(e)}
                         type="submit"
-                        class="btn add-button btn-block mb-2 shadow-sm"
+                        className="btn add-button btn-block mb-2 shadow-sm"
                       >
                         log in
                       </button>

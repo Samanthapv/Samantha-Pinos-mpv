@@ -9,7 +9,6 @@ export default function ProfilePage(props) {
   let userId = props.match.params.id;
 
   useEffect(() => {
-    console.log(userId);
     requestData();
     requestUser();
   }, []);
@@ -77,7 +76,7 @@ export default function ProfilePage(props) {
             onClick={addressSubmit}
           >
             {" "}
-            Edit <i class="fas fa-edit    "></i>{" "}
+            Edit <i className="fas fa-edit    "></i>{" "}
           </button>
         </div>
       </div>

@@ -47,9 +47,9 @@ export default class SIForm extends Component {
 
   render() {
     return (
-      <div class="container-fluid card2">
-        <div class="row no-gutter ">
-          <div class="col-md-6 d-none d-md-flex no-gutter mt-n1">
+      <div className="container-fluid card2">
+        <div className="row no-gutter ">
+          <div className="col-md-6 d-none d-md-flex no-gutter mt-n1">
             <img
               src="https://i.imgur.com/eovjCGu.jpg"
               alt="login-pic"
@@ -58,7 +58,7 @@ export default class SIForm extends Component {
             <h1 className="rotatedHeader welcome">midori</h1>
           </div>
 
-          <div class="col-md-6 card2">
+          <div className="col-md-6 card2">
             <div className="text-right text-white mt-2">
               {" "}
               <Link to="/itemlist" classname="link2">
@@ -66,10 +66,10 @@ export default class SIForm extends Component {
               </Link>{" "}
             </div>
 
-            <div class="login d-flex align-items-center py-5">
-              <div class="container">
-                <div class="row">
-                  <div class="col-lg-10 col-xl-7 mx-auto text-center mb-5 big-margin">
+            <div className="login d-flex align-items-center py-5">
+              <div className="container">
+                <div className="row">
+                  <div className="col-lg-10 col-xl-7 mx-auto text-center mb-5 big-margin">
                     <h1 className="welcome text-center mt-5">
                       nice to meet you!{" "}
                     </h1>
