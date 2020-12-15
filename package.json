@@ -8,7 +8,7 @@
     "start": "nodemon ./bin/www",
     "migrate": "node model/database migration.sql",
     "seed": "node model/database seed.sql",
-    "postinstall": "ng build"
+    "heroku-postbuild": "ng build --prod"
   },
   "husky": {
     "hooks": {
