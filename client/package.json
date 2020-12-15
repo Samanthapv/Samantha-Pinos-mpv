@@ -4,6 +4,7 @@
   "private": true,
   "author": "Germinal Camps for CodeOp",
   "dependencies": {
+    "@stripe/react-stripe-js": "^1.1.2",
     "bootstrap": "^4.5.3",
     "react": "^16.8.6",
     "react-bootstrap": "^1.4.0",
