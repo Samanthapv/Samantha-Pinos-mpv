@@ -6,7 +6,10 @@
   "scripts": {
     "start": "nodemon ./bin/www",
     "migrate": "node model/database migration.sql",
-    "seed": "node model/database seed.sql"
+    "seed": "node model/database seed.sql",
+    "postinstall": "ng build"
+    
+    }
   },
   "husky": {
     "hooks": {
