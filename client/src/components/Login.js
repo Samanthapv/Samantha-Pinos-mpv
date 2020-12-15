@@ -30,13 +30,13 @@ class Login extends React.Component {
       .post("/auth/login", { username, password })
       .then(result => {
         //store it locally
-        console.log(result.config.data);
+
         this.setState({ loginStatus: true });
         localStorage.setItem("token", result.data.token);
+        this.requestData();
         console.log(result.data.message, result.data.token);
       })
       .catch(error => this.setState({ loginStatus: false, error: error }));
-    this.requestData();
   };
 
   requestData = () => {
@@ -48,9 +48,9 @@ class Login extends React.Component {
       },
       data: { user_id: userID }
     })
-      .then(result => console.log(result))
+      .then(result => this.props.callback())
       .catch(error => console.log(error));
-    this.props.callback();
+
     this.props.callback2();
     this.props.history.push(`/`);
   };

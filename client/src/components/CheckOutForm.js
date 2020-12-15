@@ -61,7 +61,10 @@ const CheckOutForm = props => {
     return <Redirect to="/success" />;
   } else {
     return (
-      <form className="card card-body" onSubmit={handleSubmit}>
+      <form
+        className="card2 mt-5 pt-5 rounded shadow card-body"
+        onSubmit={handleSubmit}
+      >
         <ul className="list-group">
           {props.items &&
             props.items.map(item => (
@@ -78,7 +81,7 @@ const CheckOutForm = props => {
           <CardElement />
         </div>
 
-        <button disabled={!stripe} className="btn btn-success">
+        <button disabled={!stripe} className="btn add-button btn-block">
           {loading ? (
             <div className="spinner-border text-light" role="status">
               <span className="sr-only">Loading...</span>

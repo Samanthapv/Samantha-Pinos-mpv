@@ -45,6 +45,7 @@ CREATE TABLE `OrderDetails` (
 	`id` INT NOT NULL AUTO_INCREMENT,
 	`orderId` INT NOT NULL,
 	`ArticleId` INT NOT NULL,
+	`Size` VARCHAR(255) NULL,
 	PRIMARY KEY (`id`)
 );
 

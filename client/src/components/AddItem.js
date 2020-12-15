@@ -4,13 +4,21 @@ import axios from "axios";
 export default function AddItem(props) {
   let [login, setLogin] = useState(false);
 
-  let selectedItem = props.selectedItem;
-
   useEffect(() => {
     let token = localStorage.getItem("token");
 
     token ? setLogin(true) : setLogin(false);
   }, []);
+
+  let createOrder = () => {
+    let { userId, cart } = props;
+
+    if (cart === 0) {
+      axios.post("/orders", { userId }).then(result => {
+        console.log("order created");
+      });
+    }
+  };
 
   let addToCart = selectedItem => {
     console.log(props.cart === 0);
@@ -24,25 +32,20 @@ export default function AddItem(props) {
 
       props.callback(selectedItem);
 
-      if (props.cart === 0) {
-        axios.post("/orders", { userId }).then(result => {
-          console.log("order created");
-          axios.post("/orders/item", { userId, ArticleId }).then(result => {
-            console.log(result.data, "item posted");
-          });
-        });
-      } else {
-        axios.post("/orders/item", { userId, ArticleId }).then(result => {
-          console.log(result.data, "item just posted");
-        });
-      }
+      axios.post("/orders/item", { userId, ArticleId }).then(result => {
+        console.log(result.data, "item posted");
+      });
     }
   };
 
   return (
     //add item received in the props to the cart
     <div className="cart-form">
-      <button className="btn add-button" onClick={() => addToCart(props.item)}>
+      <button
+        className="btn add-button"
+        onMouseOver={createOrder}
+        onClick={() => addToCart(props.item)}
+      >
         add item to the cart
       </button>
     </div>

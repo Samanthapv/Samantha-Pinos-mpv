@@ -9,19 +9,21 @@ const stripePromise = loadStripe(
 
 function CheckOut(props) {
   return (
-    <Elements stripe={stripePromise}>
-      <div className="container p-4">
-        <div className="row h-100">
-          <div className="col-md-4 offset-md-4 h-100">
-            <CheckOutForm
-              items={props.itemsInTheCart}
-              callback={props.callback}
-              id={props.id}
-            />
+    <div className="Background1">
+      <Elements stripe={stripePromise}>
+        <div className="container p-4">
+          <div className="row h-100">
+            <div className="col-md-4 offset-md-4 h-100">
+              <CheckOutForm
+                items={props.itemsInTheCart}
+                callback={props.callback}
+                id={props.id}
+              />
+            </div>
           </div>
         </div>
-      </div>
-    </Elements>
+      </Elements>
+    </div>
   );
 }
 

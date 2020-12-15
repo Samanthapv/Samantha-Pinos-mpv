@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Itemlist from "./components/Itemlist";
 import Itempage from "./components/Itempage";
@@ -16,148 +16,134 @@ import axios from "axios";
 import SuccessfulPurchase from "./components/SuccessfulPurchase";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      items: [],
-      itemsInTheCart: [],
-      userData: "",
-      login: ""
-    };
-  }
+export default function App() {
+  let [items, setItems] = useState([]);
+  let [itemsInTheCart, setItemsInTheCart] = useState([]);
+  let [userData, setUserData] = useState("");
+  let [login, setLogin] = useState("");
 
-  componentDidMount() {
+  useEffect(() => {
     let token = localStorage.getItem("token");
 
-    token ? this.setState({ login: true }) : this.setState({ login: false });
+    token ? setLogin(true) : setLogin(false);
 
-    this.requestData();
-  }
+    requestData();
+  }, [login]);
 
-  requestData = () => {
+  let requestData = () => {
     axios("/auth/profile", {
       method: "GET",
       headers: {
         "x-access-token": localStorage.getItem("token")
       }
     })
-      .then(result => console.log(result.data.message))
-      //this.setState({ userData: result.data.message }))
+      .then(result => setUserData(result.data.message))
       .catch(error => console.log(error));
   };
 
-  addItems(item) {
-    this.setState({
-      itemsInTheCart: [...this.state.itemsInTheCart, item]
-    });
-  }
-
-  logOut = () => {
-    this.setState({ login: !this.state.login, userData: "" });
+  let addItems = item => {
+    setItemsInTheCart([...itemsInTheCart, item]);
   };
 
-  deleteItems(items) {
-    items
-      ? this.setState({ itemsInTheCart: items })
-      : this.setState({ itemsInTheCart: [] });
-  }
-
-  emptyCart = () => {
-    this.setState({ itemsInTheCart: [] });
+  let logOut = () => {
+    setLogin(!login);
+    setUserData("");
   };
 
-  render() {
-    const { items, selectedItem, itemsInTheCart, userData, login } = this.state;
+  let deleteItems = items => {
+    items ? setItemsInTheCart(items) : setItemsInTheCart([]);
+  };
 
-    return (
-      <div>
-        <Router>
-          <Header
-            cart={itemsInTheCart}
-            user={userData}
-            login={login}
-            callback={this.logOut}
+  let emptyCart = () => {
+    setItemsInTheCart([]);
+  };
+
+  return (
+    <div>
+      <Router>
+        <Header
+          cart={itemsInTheCart}
+          user={userData}
+          login={login}
+          callback={logOut}
+        />
+
+        <Switch>
+          <Route
+            path="/itemlist"
+            exact
+            render={props => (
+              <Itemlist
+                {...props}
+                items={items}
+                //makeSelected={id => makeSelected(id)}
+              />
+            )}
+          />
+          <Route
+            path="/item/:id"
+            render={props => (
+              <Itempage
+                {...props}
+                //selectedItem={selectedItem}
+                callback={item => addItems(item)}
+                cart={itemsInTheCart.length === 0 ? 0 : itemsInTheCart.length}
+                userId={userData.id}
+              />
+            )}
           />
 
-          <Switch>
-            <Route
-              path="/itemlist"
-              exact
-              render={props => (
-                <Itemlist
-                  {...props}
-                  items={items}
-                  makeSelected={id => this.makeSelected(id)}
-                />
-              )}
-            />
-            <Route
-              path="/item/:id"
-              render={props => (
-                <Itempage
-                  {...props}
-                  selectedItem={selectedItem}
-                  callback={item => this.addItems(item)}
-                  cart={itemsInTheCart.length === 0 ? 0 : itemsInTheCart.length}
-                  userId={userData.id}
-                />
-              )}
-            />
+          <Route
+            path="/login"
+            render={props => (
+              <Login
+                {...props}
+                callback={logOut}
+                callback2={requestData}
+                login={login}
+              />
+            )}
+          />
 
-            <Route
-              path="/login"
-              render={props => (
-                <Login
-                  {...props}
-                  callback={this.logOut}
-                  callback2={this.requestData}
-                />
-              )}
-            />
+          <Route path="/register" render={props => <SIForm {...props} />} />
 
-            <Route path="/register" render={props => <SIForm {...props} />} />
+          <Route
+            path="/cart"
+            render={props => (
+              <Cart
+                {...props}
+                itemsInCart={itemsInTheCart}
+                callback={items => deleteItems(items)}
+              />
+            )}
+          />
+          <Route path="/search/:q?" component={Search} />
 
-            <Route
-              path="/cart"
-              render={props => (
-                <Cart
-                  {...props}
-                  itemsInCart={itemsInTheCart}
-                  callback={items => this.deleteItems(items)}
-                />
-              )}
-            />
-            <Route path="/search/:q?" component={Search} />
+          <Route path="/filter/:q?" component={Filters} />
 
-            <Route path="/filter/:q?" component={Filters} />
+          <PrivateRoute exact path="/profile/:id" component={ProfilePage} />
 
-            <PrivateRoute exact path="/profile/:id" component={ProfilePage} />
+          <Route
+            path="/checkout"
+            render={props => (
+              <CheckOut
+                {...props}
+                itemsInTheCart={itemsInTheCart}
+                callback={emptyCart}
+                id={userData.id}
+              />
+            )}
+          />
+          <Route path="/success" exact component={SuccessfulPurchase} />
 
-            <Route
-              path="/checkout"
-              render={props => (
-                <CheckOut
-                  {...props}
-                  itemsInTheCart={itemsInTheCart}
-                  callback={this.emptyCart}
-                  id={userData.id}
-                />
-              )}
-            />
-            <Route path="/success" exact component={SuccessfulPurchase} />
-
-            <Route path="/" exact component={Home} />
-            <div className="container text-center">
-              {" "}
-              <h3>Page not found</h3>
-              <img src="https://bit.ly/2G1wMzZ" alt="shop" />{" "}
-            </div>
-          </Switch>
-        </Router>
-      </div>
-    );
-  }
+          <Route path="/" exact component={Home} />
+          <div className="container text-center">
+            {" "}
+            <h3>Page not found</h3>
+            <img src="https://bit.ly/2G1wMzZ" alt="shop" />{" "}
+          </div>
+        </Switch>
+      </Router>
+    </div>
+  );
 }
-
-export default App;
