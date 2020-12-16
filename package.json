@@ -35,6 +35,7 @@
     "prettier": "^1.19.1",
     "pretty-quick": "^2.0.1",
     "query-string": "^6.13.6",
+    "react-progressive-image": "^0.6.0",
     "react-stripe-checkout": "^2.6.3",
     "stripe": "^8.117.0"
   }

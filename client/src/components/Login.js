@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
+import ProgressiveImage from "react-progressive-image";
 
 class Login extends React.Component {
   constructor(props) {
@@ -10,7 +11,7 @@ class Login extends React.Component {
       password: "",
       data: [],
       loginStatus: "",
-      error: ""
+      error: false
     };
   }
 
@@ -47,7 +48,7 @@ class Login extends React.Component {
       data: { user_id: userID }
     })
       .then(result => this.props.callback())
-      .catch(error => console.log(error));
+      .catch(error => this.setState({ error: true }));
 
     this.props.callback2();
     this.props.history.push(`/`);
@@ -58,11 +59,19 @@ class Login extends React.Component {
       <div className="container-fluid card">
         <div className="row no-gutter ">
           <div className="col-md-6 d-none d-md-flex no-gutter mt-n1">
-            <img
-              src="https://i.imgur.com/fyneG6q.jpeg"
-              alt="login-pic"
-              className="img-fluid"
-            />
+            <ProgressiveImage
+              src="large-image.jpg"
+              placeholder="tiny-image.jpg"
+            >
+              {src => (
+                <img
+                  src="https://i.imgur.com/fyneG6q.jpeg"
+                  alt="login-pic"
+                  className="img-fluid"
+                />
+              )}
+            </ProgressiveImage>
+
             <h1 className="rotatedHeader welcome">midori</h1>
           </div>
 
@@ -79,7 +88,11 @@ class Login extends React.Component {
                 <div className="row">
                   <div className="col-lg-10 col-xl-7 mx-auto text-center mb-5 big-margin">
                     <h1 className="welcome text-center mt-5">welcome back!</h1>
-
+                    {this.state.error && (
+                      <p className="bg-danger text-white">
+                        Invalid unsername or password
+                      </p>
+                    )}
                     <form>
                       <div className="form-group mb-3">
                         <input

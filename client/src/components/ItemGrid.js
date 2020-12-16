@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import ProgressiveImage from "react-progressive-image";
 
 export default class AllItems extends Component {
   render() {
@@ -10,11 +11,18 @@ export default class AllItems extends Component {
           {items.map(item => (
             <div key={item.id} className="col-6 mb-1 pb-3  ">
               <Link to={"/item/" + item.id}>
-                <img
-                  className="img-fluid product-image withBorder shadow"
-                  src={item.picture}
-                  alt={item.name}
-                />
+                <ProgressiveImage
+                  src="large-image.jpg"
+                  placeholder="tiny-image.jpg"
+                >
+                  {src => (
+                    <img
+                      className="img-fluid product-image withBorder shadow"
+                      src={item.picture}
+                      alt={item.name}
+                    />
+                  )}
+                </ProgressiveImage>
               </Link>
 
               <div className="img__description_layer">

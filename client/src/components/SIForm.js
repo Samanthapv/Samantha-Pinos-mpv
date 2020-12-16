@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import ProgressiveImage from "react-progressive-image";
 
 export default class SIForm extends Component {
   constructor(props) {
@@ -50,11 +51,19 @@ export default class SIForm extends Component {
       <div className="container-fluid card2">
         <div className="row no-gutter ">
           <div className="col-md-6 d-none d-md-flex no-gutter mt-n1">
-            <img
-              src="https://i.imgur.com/eovjCGu.jpg"
-              alt="login-pic"
-              className="img-fluid"
-            />
+            <ProgressiveImage
+              src="large-image.jpg"
+              placeholder="tiny-image.jpg"
+            >
+              {src => (
+                <img
+                  src="https://i.imgur.com/eovjCGu.jpg"
+                  alt="login-pic"
+                  className="img-fluid"
+                />
+              )}
+            </ProgressiveImage>
+
             <h1 className="rotatedHeader welcome">midori</h1>
           </div>
 

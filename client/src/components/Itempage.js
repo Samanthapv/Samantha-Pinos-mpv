@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import AddItem from "./AddItem";
+import ProgressiveImage from "react-progressive-image";
 
 let clothesSize = ["XS", "S", "M", "L", "XL"];
 let shoeSize = [36, 37, 38, 39, 40, 41];
@@ -43,11 +44,19 @@ export default class Itempage extends Component {
       <div className="container text-center item-page mb-5">
         {item && (
           <div className="product-page">
-            <img
-              className="product-pic img-fluid withBorder"
-              src={item.picture}
-              alt={item.name}
-            />
+            <ProgressiveImage
+              src="large-image.jpg"
+              placeholder="tiny-image.jpg"
+            >
+              {src => (
+                <img
+                  className="product-pic img-fluid withBorder"
+                  src={item.picture}
+                  alt={item.name}
+                />
+              )}
+            </ProgressiveImage>
+
             <div className="product-info">
               <h3>{item.name}</h3>
               <h5>{`${item.price} €`}</h5>
