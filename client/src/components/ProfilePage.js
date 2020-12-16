@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { format } from "date-fns";
 import axios from "axios";
+import ProgressiveImage from "react-progressive-image";
 
 export default function ProfilePage(props) {
   let [orders, setOrders] = useState([]);
@@ -94,7 +95,7 @@ export default function ProfilePage(props) {
                 <div className="orderedItem">
                   <img src={item.picture} className="orderPic" />
                   <p>
-                    {item.name} | {item.price} €{" "}
+                    {item.name} | {item.price} € {item.Size && `| ${item.Size}`}
                   </p>
                 </div>
               );
