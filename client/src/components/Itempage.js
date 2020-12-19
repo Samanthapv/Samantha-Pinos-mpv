@@ -64,7 +64,7 @@ export default class Itempage extends Component {
               <div className="addItem">
                 {item.categoryId !== 8 && (
                   <select
-                    className="form-group form-control mr-2 w-25 mdb-select md-outline colorful-select dropdown-primary shadow"
+                    className="form-group form-control mr-3 selectw mdb-select md-outline colorful-select dropdown-primary shadow"
                     name="goal"
                     value={size}
                     onChange={this.selectSize}
@@ -72,14 +72,16 @@ export default class Itempage extends Component {
                     <option
                       value="DEFAULT"
                       selected="selected"
-                      className="pr-3"
+                      className="pr-5"
                     >
                       ...
                     </option>
 
                     {item.categoryId === 1
                       ? shoeSize.map(size => (
-                          <option value={size}>{size}</option>
+                          <option className="p-2" value={size}>
+                            {size}
+                          </option>
                         ))
                       : clothesSize.map(size => (
                           <option value={size}>{size}</option>

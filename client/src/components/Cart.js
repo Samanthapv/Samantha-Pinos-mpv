@@ -20,19 +20,24 @@ export default class cart extends Component {
         <h5 className="ml-4"> · cart ·</h5>
 
         {!itemsInCart.length > 0 ? (
-          <div className="ml-4"> your cart is empty.</div>
+          <div className="ml-4 img-div2"> your cart is empty.</div>
         ) : (
           <div>
-            <ul className="mt-3">
+            <ul className="mt-3 list-group pl-5">
               {itemsInCart &&
                 itemsInCart.map(item => (
-                  <li className="cartItem cart-item" key={item.id}>
+                  <li
+                    className="cartItem cart-item list-group-item"
+                    key={item.id}
+                  >
                     <img
                       src={item.picture}
                       alt={item.name}
-                      className="cartPic "
+                      className="cartPic rounded"
                     />
-                    <p>{item.name}</p>
+                    <p className="pp-title">
+                      <span className="half_background">{item.name}</span>
+                    </p>
                     <p>
                       {`${item.price} €`}{" "}
                       <i

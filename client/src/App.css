@@ -16,6 +16,8 @@ a {
 }
 
 .cartItem {
+  margin-left: 500px;
+  margin-right: 500px;
   display: flex;
   justify-content: center;
   gap: 20px;
@@ -344,8 +346,10 @@ input:focus {
 
 .orderedItem {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  background-color: #fad6ce;
+  color: black;
 }
 
 .orders {
@@ -359,7 +363,44 @@ input:focus {
   background-size: 800px;
 }
 
+.img-div2 {
+  height: 500px;
+  background: url(hola.png) no-repeat center center fixed;
+  font-family: "Frank Ruhl Libre", serif;
+  color: white;
+  font-size: 30px;
+  background-size: 800px;
+}
+
 .addItem {
   display: flex;
   justify-content: center;
+}
+
+.items2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+pp-title {
+  background-color: #eee;
+  margin: 0.4em 0;
+  padding: 0.6em;
+}
+
+.half_background {
+  background: linear-gradient(to top, #fad6ce 50%, transparent 50%);
+}
+
+.frank {
+  font-family: "Frank Ruhl Libre", serif;
+}
+
+.cart-ul {
+  width: 500px;
+}
+
+.selectw {
+  width: 30%;
 }

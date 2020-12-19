@@ -51,7 +51,7 @@ export default function AddItem(props) {
         onMouseOver={createOrder}
         onClick={() => addToCart(props.item)}
       >
-        add item to the cart
+        add to the cart
       </button>
     </div>
   );

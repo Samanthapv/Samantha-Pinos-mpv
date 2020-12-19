@@ -33,7 +33,7 @@ export default function Header(props) {
                 id="dropdown-basic"
                 className="text-dark"
               >
-                hey there, {props.user.name} ❤
+                hey there, {props.user.name} 🖤
               </Dropdown.Toggle>
 
               <Dropdown.Menu>

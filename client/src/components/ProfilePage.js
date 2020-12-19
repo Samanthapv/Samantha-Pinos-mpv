@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { format } from "date-fns";
 import axios from "axios";
-import ProgressiveImage from "react-progressive-image";
 
 export default function ProfilePage(props) {
   let [orders, setOrders] = useState([]);
@@ -55,7 +54,9 @@ export default function ProfilePage(props) {
           my account{" "}
         </div>
         <div className="w-100 border p-5 pl-5 ml-5 mb-5 mt-3 rounded shadow">
-          <h3 className="text-center mb-4">my address</h3>
+          <h3 className="text-center mb-4 pp-title">
+            <span className="half_background frank">my address</span>
+          </h3>
 
           <p className="text-center">
             This is where your orders will be send to:
@@ -83,7 +84,9 @@ export default function ProfilePage(props) {
       </div>
 
       <div className=" border p-5 pl-5 mr-5 ml-5 mb-5 mt-3 w-50 rounded shadow">
-        <h3 className="text-center mb-5">my orders</h3>
+        <h3 className="text-center mb-5 pp-title">
+          <span className="half_background frank">my orders</span>
+        </h3>
         {orders.length < 1 ? (
           <h5 className="text-muted text-center">
             You don't have any orders yet.
@@ -92,9 +95,9 @@ export default function ProfilePage(props) {
           orders.map(function(order) {
             var items = order.map(function(item) {
               return (
-                <div className="orderedItem">
-                  <img src={item.picture} className="orderPic" />
-                  <p>
+                <div className="orderedItem p-1 round shadow mb-2 ml-3">
+                  <img src={item.picture} className="orderPic rounded shadow" />
+                  <p className="ml-2">
                     {item.name} | {item.price} € {item.Size && `| ${item.Size}`}
                   </p>
                 </div>
