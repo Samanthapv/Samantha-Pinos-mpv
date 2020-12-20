@@ -5,7 +5,7 @@ import Info from "./Info";
 export default class Home extends Component {
   render() {
     return (
-      <div className="homePage">
+      <div className="homePage text-center">
         <CarouselImages />
         <Info />
         <div className="social">

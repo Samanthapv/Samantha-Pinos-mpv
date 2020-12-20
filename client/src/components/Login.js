@@ -65,9 +65,9 @@ class Login extends React.Component {
             >
               {src => (
                 <img
-                  src="https://i.imgur.com/fyneG6q.jpeg"
+                  src="https://i.imgur.com/I8jBz4R.png"
                   alt="login-pic"
-                  className="img-fluid"
+                  className="img-fluid login-pic"
                 />
               )}
             </ProgressiveImage>
