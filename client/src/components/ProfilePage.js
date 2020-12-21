@@ -30,7 +30,7 @@ export default function ProfilePage(props) {
         return response.json();
       })
       .then(json => {
-        setOrders(Object.values(json.itemsByOrder));
+        setOrders(Object.values(json.itemsByOrder).reverse());
       });
   };
 

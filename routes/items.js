@@ -95,15 +95,4 @@ router.post("/", function(req, res, next) {
     .catch(err => res.status(500).send(err));
 });
 
-// DELETE item  (won't be used in the frontend)
-router.delete("/:id", function(req, res, next) {
-  let id = req.params.id;
-
-  db(`DELETE FROM articles WHERE id = ${id}`)
-    .then(results => {
-      res.send(results.data);
-    })
-    .catch(err => res.status(500).send(err));
-});
-
 module.exports = router;

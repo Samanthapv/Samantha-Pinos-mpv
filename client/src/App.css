@@ -15,6 +15,10 @@ a {
   margin-top: 20px;
 }
 
+.cursor {
+  cursor: pointer;
+}
+
 .cartItem {
   margin-left: 500px;
   margin-right: 500px;

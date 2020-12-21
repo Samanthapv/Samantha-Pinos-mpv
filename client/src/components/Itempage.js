@@ -58,7 +58,7 @@ export default class Itempage extends Component {
             </ProgressiveImage>
 
             <div className="product-info">
-              <h3>{item.name}</h3>
+              <h3 className="frank">{item.name}</h3>
               <h5>{`${item.price} €`}</h5>
               <p>{item.description}</p>
               <div className="addItem">

@@ -99,4 +99,26 @@ router.put("/", (req, res) => {
   });
 });
 
+// DELETE item from order (cart)
+
+router.delete("/", function(req, res) {
+  const { userId, articleId } = req.body;
+  console.log(" hi you" + userId + articleId);
+  db(
+    `SELECT * FROM Orders where userId = ${userId} ORDER BY id DESC LIMIT 0, 1;`
+  ).then(results => {
+    res.send(results);
+    let id = results.data[0];
+    console.log(id.id);
+
+    db(
+      `DELETE FROM OrderDetails WHERE orderId = ${id.id} AND ArticleId = ${articleId}`
+    )
+      .then(results => {
+        res.send(results.data);
+      })
+      .catch(err => res.status(500).send(err));
+  });
+});
+
 module.exports = router;

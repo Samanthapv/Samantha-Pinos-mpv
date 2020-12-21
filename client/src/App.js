@@ -114,6 +114,7 @@ export default function App() {
                 {...props}
                 itemsInCart={itemsInTheCart}
                 callback={items => deleteItems(items)}
+                userId={userData.id}
               />
             )}
           />
