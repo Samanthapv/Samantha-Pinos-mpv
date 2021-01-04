@@ -9,18 +9,15 @@ export default class NotFound extends Component {
       <div>
         <div className="notFound ml-4 text-center">
           sorry, no items matched your search.{" "}
-          {action && (
+          {action === "search" && (
             <p className="link" onClick={() => callback()}>
               {" "}
               {action} again
             </p>
           )}
-          <Link to="/Itemlist">
-            <p className="link ml-2 dot">back to the collection</p>
-          </Link>
         </div>
         <img
-          className="img-fluid ml-5"
+          className="img-fluid ml-5 mt-5"
           src="https://s3.eu-west-2.amazonaws.com/files.sewport.com/blog/the-rise-of-sustainable-fashion/rise-of-sustainable-fashion.jpeg"
           alt="clothes in the forest"
         />

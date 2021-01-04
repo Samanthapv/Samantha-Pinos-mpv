@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import queryString from "query-string";
 import ItemGrid from "./ItemGrid";
 import NotFound from "./NotFound";
-import { Link } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 
 export default function CategoryNav(props) {
   let [colors, setColors] = useState([]);
@@ -10,17 +10,21 @@ export default function CategoryNav(props) {
   let [color, setColor] = useState("");
   let [category, setCategory] = useState("");
   let [items, setItems] = useState([]);
+  let [filters, setFilters] = useState({});
+  let [openFilter, setOpenFilter] = useState(false);
   let [notFound, setnotFound] = useState(false);
+  let location = useLocation();
+  const history = useHistory();
 
   useEffect(() => {
     getColors();
     getCategories();
 
-    let filter = queryString.parse(props.location.search);
+    let filter = queryString.parse(location.search);
 
-    if (filter) {
-      filterItems(filter.color, filter.category);
-    }
+    setCategory(filter.category);
+    setColor(filter.color);
+    setFilters({ ...filter, ...filters });
   }, []);
 
   const getColors = () => {
@@ -39,6 +43,16 @@ export default function CategoryNav(props) {
       });
   };
 
+  useEffect(() => {
+    filterItems(color, category);
+
+    const queryParams = queryString.stringify(filters, {
+      skipEmptyString: true
+    });
+
+    history.push(`/filter?${queryParams}`);
+  }, [filters]);
+
   const filterItems = (color, category) => {
     let url = `items/`;
     if (color || category) {
@@ -53,6 +67,8 @@ export default function CategoryNav(props) {
   };
 
   const handleClick = (name, content) => {
+    setFilters({ ...filters, [name]: content });
+    notFound && setnotFound(false);
     name === "color" ? setColor(content) : setCategory(content);
   };
 
@@ -61,6 +77,7 @@ export default function CategoryNav(props) {
     setCategory("");
     setnotFound(false);
     filterItems();
+    history.push(`/filter`);
   };
 
   return (
@@ -80,48 +97,34 @@ export default function CategoryNav(props) {
               </li>
             ))}
           </ul>
-          <ul>
-            {colors.map(item => (
-              <li
-                key={item.id}
-                className={`filter-link ${
-                  color === item.id ? "green" : "inactive"
-                }`}
-                key={color.id}
-                onClick={() => handleClick("color", item.id)}
-              >
-                {" "}
-                {item.color_name}{" "}
-                <i
-                  className="fa fa-heart"
-                  style={{ color: item.color_name }}
-                  aria-hidden="true"
-                ></i>
-              </li>
-            ))}
-          </ul>
-          <div className="buttons">
-            <Link to={`/filter?color=${color}&category=${category}`}>
-              <button
-                className="btn btn-light filter-btn mt-2 mb-3"
-                onClick={() => filterItems(color, category)}
-              >
-                {" "}
-                apply filters{" "}
-              </button>
-            </Link>
+
+          <div className="buttons mb-3 ">
+            <select
+              className="w-64 border shadow-sm p-2 mr-3 rounded-full focus:outline-none"
+              name="color"
+              value={color}
+              onChange={e => handleClick(e.target.name, e.target.value)}
+            >
+              <option value="">filter by color</option>
+              {colors.map(color => (
+                <option key={color.id} value={color.id}>
+                  {color.color_name}
+                </option>
+              ))}
+            </select>
+
             {(color || category) && (
               <p className="btn btn-link reset ml-2 " onClick={resetFilter}>
                 Reset filters
               </p>
             )}
           </div>
+          {!notFound ? (
+            <ItemGrid items={items} />
+          ) : (
+            <NotFound action={"filter"} callback={resetFilter} />
+          )}
         </div>
-        {!notFound ? (
-          <ItemGrid items={items} />
-        ) : (
-          <NotFound action={"filter"} callback={resetFilter} />
-        )}
       </div>
     </div>
   );

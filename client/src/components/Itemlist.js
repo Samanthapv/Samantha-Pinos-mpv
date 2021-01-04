@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ItemGrid from "./ItemGrid";
+import Filters from "./Filters";
 import { Link } from "react-router-dom";
 
 export default class Itemlist extends Component {
@@ -48,10 +49,7 @@ export default class Itemlist extends Component {
           <h1 className="rotatedTitle">midori</h1>
         </div>
         <div className="text-center ml-5 dot filter-links">
-          <Link to="/filter">
-            {" "}
-            <p className="link text-center filter-link">· filter items ·</p>
-          </Link>
+          <Filters />
           <p className="link text-center filter-link">
             · sort by price{" "}
             <i
