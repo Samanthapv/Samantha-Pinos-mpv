@@ -230,8 +230,10 @@ input:focus {
 
 .notFound {
   display: flex;
+  height: 800px;
   justify-content: center;
   gap: 10px;
+  padding-top: 150px;
 }
 
 .homePage {
@@ -374,6 +376,15 @@ input:focus {
   color: white;
   font-size: 30px;
   background-size: 800px;
+}
+
+.img-div3 {
+  height: 800px;
+  background: url(Kuroageha.jpg) no-repeat center center fixed;
+  font-family: "Frank Ruhl Libre", serif;
+  color: white;
+  font-size: 30px;
+  background-size: 1000px;
 }
 
 .addItem {

@@ -11,8 +11,7 @@ export default function CategoryNav(props) {
   let [category, setCategory] = useState("");
   let [items, setItems] = useState([]);
   let [filters, setFilters] = useState({});
-  let [openFilter, setOpenFilter] = useState(false);
-  let [notFound, setnotFound] = useState(false);
+  let [notFound, setNotFound] = useState(false);
   let location = useLocation();
   const history = useHistory();
 
@@ -62,20 +61,20 @@ export default function CategoryNav(props) {
     fetch(url)
       .then(response => response.json())
       .then(response => {
-        response.length > 0 ? setItems(response) : setnotFound(true);
+        response.length > 0 ? setItems(response) : setNotFound(true);
       });
   };
 
   const handleClick = (name, content) => {
+    setNotFound(false);
     setFilters({ ...filters, [name]: content });
-    notFound && setnotFound(false);
     name === "color" ? setColor(content) : setCategory(content);
   };
 
   const resetFilter = () => {
     setColor("");
     setCategory("");
-    setnotFound(false);
+    setNotFound(false);
     filterItems();
     history.push(`/filter`);
   };
