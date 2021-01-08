@@ -24,22 +24,6 @@ export default class Itemlist extends Component {
       });
   };
 
-  getItemsUp = () => {
-    fetch(`/items/price/up`)
-      .then(response => response.json())
-      .then(response => {
-        this.setState({ items: response });
-      });
-  };
-
-  getItemsDown = () => {
-    fetch(`/items/price/down`)
-      .then(response => response.json())
-      .then(response => {
-        this.setState({ items: response });
-      });
-  };
-
   render() {
     const { items } = this.state;
     return (

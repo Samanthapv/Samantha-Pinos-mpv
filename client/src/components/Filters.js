@@ -89,6 +89,24 @@ export default function CategoryNav(props) {
     history.push(`/filter`);
   };
 
+  //fetch items sorted by price
+
+  let getItemsUp = () => {
+    fetch(`/items/price/up`)
+      .then(response => response.json())
+      .then(response => {
+        setItems(response);
+      });
+  };
+
+  let getItemsDown = () => {
+    fetch(`/items/price/down`)
+      .then(response => response.json())
+      .then(response => {
+        setItems(response);
+      });
+  };
+
   return (
     <div className="container text-center">
       <div>
@@ -108,22 +126,42 @@ export default function CategoryNav(props) {
           </ul>
 
           <div className="buttons mb-3 ml-5">
+            <p className="link text-center filter-link">
+              · sort by price{" "}
+              <i
+                className="fa fa-arrow-up"
+                aria-hidden="true"
+                onClick={getItemsUp}
+              ></i>{" "}
+              <i
+                className="fa fa-arrow-down"
+                aria-hidden="true"
+                onClick={getItemsDown}
+              ></i>{" "}
+              ·
+            </p>
+
             <select
-              className="w-64 border shadow-sm p-1 mr-3 rounded-full focus:outline-none"
+              className="w-64 border h6 shadow-sm p-1 mr-3 rounded-full focus:outline-none"
               name="color"
               value={color}
               onChange={e => handleClick(e.target.name, e.target.value)}
             >
-              <option value="">filter by color</option>
-              {colors.map(color => (
-                <option key={color.id} value={color.id}>
-                  {color.color_name}
-                </option>
-              ))}
+              <optgroup>
+                <option value="">filter by color</option>
+                {colors.map(color => (
+                  <option key={color.id} value={color.id}>
+                    {color.color_name}
+                  </option>
+                ))}
+              </optgroup>
             </select>
 
             {(color || category) && (
-              <p className="btn btn-link reset ml-2 " onClick={resetFilter}>
+              <p
+                className="btn btn-link filter-link reset ml-2 "
+                onClick={resetFilter}
+              >
                 Reset filters
               </p>
             )}

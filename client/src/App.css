@@ -143,9 +143,12 @@ a {
 }
 
 .buttons {
+  font-size: 8px;
   display: flex;
   justify-content: center;
-  align-content: center;
+  align-items: baseline;
+  height: 50px;
+  border-radius: 30%;
 }
 
 .filter-btn {
@@ -422,4 +425,12 @@ pp-title {
 
 .login-pic {
   height: 100vh;
+}
+
+option {
+  font-size: 8px;
+}
+
+optgroup {
+  font-size: 40px;
 }
