@@ -16,7 +16,7 @@ import axios from "axios";
 import SuccessfulPurchase from "./components/SuccessfulPurchase";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-export default function App() {
+export default function App(props) {
   let [items, setItems] = useState([]);
   let [itemsInTheCart, setItemsInTheCart] = useState([]);
   let [userData, setUserData] = useState("");
@@ -73,11 +73,7 @@ export default function App() {
             path="/itemlist"
             exact
             render={props => (
-              <Itemlist
-                {...props}
-                items={items}
-                //makeSelected={id => makeSelected(id)}
-              />
+              <Itemlist {...props} items={items} location={props.location} />
             )}
           />
           <Route
@@ -120,7 +116,11 @@ export default function App() {
           />
           <Route path="/search/:q?" component={Search} />
 
-          <Route path="/filter/:q?" component={Filters} />
+          <Route
+            path="/filter/:q?"
+            component={Filters}
+            location={props.location}
+          />
 
           <PrivateRoute exact path="/profile/:id" component={ProfilePage} />
 

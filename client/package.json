@@ -6,6 +6,7 @@
   "dependencies": {
     "@stripe/react-stripe-js": "^1.1.2",
     "bootstrap": "^4.5.3",
+    "electron-to-chromium": "^1.3.345",
     "react": "^16.8.6",
     "react-bootstrap": "^1.4.0",
     "react-dom": "^16.8.6",
