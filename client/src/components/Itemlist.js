@@ -34,7 +34,6 @@ export default class Itemlist extends Component {
         <div className="text-center ml-5 dot filter-links">
           <Filters />
         </div>
-        <ItemGrid items={items} />
       </div>
     );
   }

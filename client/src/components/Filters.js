@@ -17,6 +17,7 @@ export default function Filters() {
   useEffect(() => {
     getColors();
     getCategories();
+    getItems();
 
     let filter = queryString.parse(location.search);
 
@@ -38,6 +39,14 @@ export default function Filters() {
       .then(response => response.json())
       .then(response => {
         setCategories(response);
+      });
+  };
+
+  const getItems = () => {
+    fetch(`/items`)
+      .then(response => response.json())
+      .then(response => {
+        setItems(response);
       });
   };
 

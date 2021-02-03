@@ -1,5 +1,7 @@
 # Samantha Pinos MVP
 
+Visit it live at https://midori-shop.herokuapp.com/
+
 ## Documents
 
 - database schema:
@@ -33,6 +35,16 @@
 - Run `npm run migrate` in the main folder of this repository, in a new terminal window. This will create three tables articles, colors and categories.
 
 - Run `npm run seed` in the main folder as well, to fill the tables with content.
+
+### JWT
+
+JSON Web Tokens are used for user authorization. A secret string is used to sign the tokens.
+
+Add your secret to the `.env` file:
+
+```
+SUPER_SECRET=YOUR_SECRET
+```
 
 ### Development
 

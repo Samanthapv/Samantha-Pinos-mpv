@@ -45,11 +45,11 @@ router.post("/", function(req, res, next) {
   const { userId } = req.body;
   console.log(userId);
   db(`INSERT INTO Orders (userId) VALUES
-      ("${userId}");`).then(results => {
-    console
-      .log("new order was created")
-      .catch(err => res.status(500).send(err));
-  });
+      ("${userId}");`)
+    .then(results => {
+      console.log("new order was created");
+    })
+    .catch(err => res.status(500).send(err));
 });
 
 //add item to last order made by user
@@ -75,7 +75,7 @@ router.post("/item", function(req, res, next) {
 
     db(sql)
       .then(results => {
-        console.log("item inserted").catch(err => res.status(500).send(err));
+        console.log("item inserted");
       })
       .catch(err => res.status(500).send(err));
   });
@@ -93,7 +93,7 @@ router.put("/", (req, res) => {
     console.log(id.id);
     db(`UPDATE Orders SET confirmed = 1 WHERE id = ${id.id}`)
       .then(results => {
-        res.send(results.data);
+        console.log(results.data);
       })
       .catch(err => res.status(500).send(err));
   });

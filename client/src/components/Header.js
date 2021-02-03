@@ -57,12 +57,14 @@ export default function Header(props) {
                 <i className="fa fa-search dot" aria-hidden="true"></i>
               </li>
             </Link>
-            <Link to="/cart">
+
+            <Link to={login ? "/cart" : "/login"}>
               <li className="nav-li">
                 <i
                   className="fa fa-shopping-basket basket dot"
                   aria-hidden="true"
                 ></i>
+
                 {props.cart && (
                   <span className="cartNumber dot">{props.cart.length}</span>
                 )}
