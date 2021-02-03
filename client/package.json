@@ -4,16 +4,16 @@
   "private": true,
   "author": "Germinal Camps for CodeOp",
   "dependencies": {
-    "@stripe/react-stripe-js": "^1.1.2",
-    "bootstrap": "^4.5.3",
-    "dot-prop": "^4.2.0",
-    "electron-to-chromium": "^1.3.345",
-    "react": "^16.8.6",
-    "react-bootstrap": "^1.4.0",
-    "react-dom": "^16.8.6",
+    "@stripe/react-stripe-js": "^1.2.2",
+    "bootstrap": "^4.6.0",
+    "dot-prop": "^6.0.1",
+    "electron-to-chromium": "^1.3.653",
+    "react": "^17.0.1",
+    "react-bootstrap": "^1.4.3",
+    "react-dom": "^17.0.1",
     "react-progressive-image": "^0.6.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.0.1"
+    "react-scripts": "4.0.2"
   },
   "scripts": {
     "start": "react-scripts start",
