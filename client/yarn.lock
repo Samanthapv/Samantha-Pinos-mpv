@@ -973,9 +973,9 @@
   "version" "1.3.2"
 
 "@hapi/hoek@^8.3.0", "@hapi/hoek@8.x.x":
-  "integrity" "sha512-7XYT10CZfPsH7j9F1Jmg1+d0ezOux2oM2GfArAzLwWe4mE2Dr3hVjsAL6+TFY49RRJlCdJDMw3nJsLFroTc8Kw=="
-  "resolved" "https://registry.npmjs.org/@hapi/hoek/-/hoek-8.5.0.tgz"
-  "version" "8.5.0"
+  "integrity" "sha512-yN7kbciD87WzLGc5539Tn0sApjyiGHAJgKvG9W8C7O+6c7qmoQMfVs0W4bX17eqz6C78QJqqFrtgdK5EWf6Qow=="
+  "resolved" "https://registry.npmjs.org/@hapi/hoek/-/hoek-8.5.1.tgz"
+  "version" "8.5.1"
 
 "@hapi/joi@^15.0.0":
   "integrity" "sha512-entf8ZMOK8sc+8YfeOlM8pCfg3b5+WZIKBfUaaJT8UsjAAPjartzxIYm3TIbjvA4u+u++KbcXD38k682nVHDAQ=="
@@ -1623,9 +1623,9 @@
   "version" "6.2.0"
 
 "acorn@^5.5.3":
-  "integrity" "sha512-T/zvzYRfbVojPWahDsE5evJdHb3oJoQfFbsrKM7w5Zcs++Tr257tia3BmMP8XYVjp1S9RZXQMh7gao96BlqZOw=="
-  "resolved" "https://registry.npmjs.org/acorn/-/acorn-5.7.3.tgz"
-  "version" "5.7.3"
+  "integrity" "sha512-1D++VG7BhrtvQpNbBzovKNc1FLGGEE/oGe7b9xJm/RFHMBeUaUGpluV9RLjZa47YFdPcDAenEYuq9pQPcMdLJg=="
+  "resolved" "https://registry.npmjs.org/acorn/-/acorn-5.7.4.tgz"
+  "version" "5.7.4"
 
 "acorn@^6.0.1", "acorn@^6.0.4", "acorn@^6.0.5", "acorn@^6.0.7":
   "integrity" "sha512-XtGIhXwF8YM8bJhGxG5kXgjkEuNGLTkoYqVE+KMR+aspr4KGYmKYg7yUe3KghyQ9yheNwLnjmzh/7+gfDBmHCQ=="
@@ -3485,10 +3485,10 @@
     "dom-serializer" "0"
     "domelementtype" "1"
 
-"dot-prop@^4.1.1":
-  "integrity" "sha512-tUMXrxlExSW6U2EXiiKGSBVdYgtV8qlHL+C10TsW4PURY/ic+eaysnSkwB4kA/mBlCyy/IKDJ+Lc3wbWeaXtuQ=="
-  "resolved" "https://registry.npmjs.org/dot-prop/-/dot-prop-4.2.0.tgz"
-  "version" "4.2.0"
+"dot-prop@^4.1.1", "dot-prop@^4.2.0":
+  "integrity" "sha512-l0p4+mIuJIua0mhxGoh4a+iNL9bmeK5DvnSVQa6T0OhrVmaEa1XScX5Etc673FePCJOArq/4Pa2cLGODUWTPOQ=="
+  "resolved" "https://registry.npmjs.org/dot-prop/-/dot-prop-4.2.1.tgz"
+  "version" "4.2.1"
   dependencies:
     "is-obj" "^1.0.0"
 
@@ -6029,12 +6029,12 @@
     "strip-bom" "^3.0.0"
 
 "loader-fs-cache@^1.0.0":
-  "integrity" "sha512-70IzT/0/L+M20jUlEqZhZyArTU6VKLRTYRDAYN26g4jfzpJqjipLL3/hgYpySqI9PwsVRHHFja0LfEmsx9X2Cw=="
-  "resolved" "https://registry.npmjs.org/loader-fs-cache/-/loader-fs-cache-1.0.2.tgz"
-  "version" "1.0.2"
+  "integrity" "sha512-ldcgZpjNJj71n+2Mf6yetz+c9bM4xpKtNds4LbqXzU/PTdeAX0g3ytnU1AJMEcTk2Lex4Smpe3Q/eCTsvUBxbA=="
+  "resolved" "https://registry.npmjs.org/loader-fs-cache/-/loader-fs-cache-1.0.3.tgz"
+  "version" "1.0.3"
   dependencies:
     "find-cache-dir" "^0.1.1"
-    "mkdirp" "0.5.1"
+    "mkdirp" "^0.5.1"
 
 "loader-runner@^2.3.0":
   "integrity" "sha512-Jsmr89RcXGIwivFY21FcRrisYZfvLMTWx5kOLc+JTxtpBOG6xML0vzbc6SEQG2FO9/4Fc3wW4LVcB5DmGflaRw=="
@@ -6425,13 +6425,6 @@
   "version" "0.5.5"
   dependencies:
     "minimist" "^1.2.5"
-
-"mkdirp@0.5.1":
-  "integrity" "sha1-MAV0OOrGz3+MR2fzhkjWaX11yQM="
-  "resolved" "https://registry.npmjs.org/mkdirp/-/mkdirp-0.5.1.tgz"
-  "version" "0.5.1"
-  dependencies:
-    "minimist" "0.0.8"
 
 "move-concurrently@^1.0.1":
   "integrity" "sha1-viwAX9oy4LKa8fBdfEszIUxwH5I="
