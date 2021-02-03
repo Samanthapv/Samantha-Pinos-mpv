@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import ItemGrid from "./ItemGrid";
 import Filters from "./Filters";
-import { Link } from "react-router-dom";
 
 export default class Itemlist extends Component {
   constructor(props) {
@@ -34,20 +33,6 @@ export default class Itemlist extends Component {
         </div>
         <div className="text-center ml-5 dot filter-links">
           <Filters />
-          <p className="link text-center filter-link">
-            · sort by price{" "}
-            <i
-              className="fa fa-arrow-up"
-              aria-hidden="true"
-              onClick={this.getItemsUp}
-            ></i>{" "}
-            <i
-              className="fa fa-arrow-down"
-              aria-hidden="true"
-              onClick={this.getItemsDown}
-            ></i>{" "}
-            ·
-          </p>
         </div>
         <ItemGrid items={items} />
       </div>

@@ -115,11 +115,12 @@ a {
 
 .rotatedHeader {
   position: fixed;
-  top: 50%;
+  top: 60%;
   padding: 0 5px;
   text-align: center;
   border-radius: 5px;
   transform-origin: center top;
+  margin-left: 30px;
   transform: translateX(-50%) rotate(-90deg);
   margin-top: 40px;
 }

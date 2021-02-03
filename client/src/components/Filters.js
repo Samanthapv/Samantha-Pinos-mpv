@@ -5,7 +5,7 @@ import NotFound from "./NotFound";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
-export default function Filters(props) {
+export default function Filters() {
   const location = useLocation();
   let [colors, setColors] = useState([]);
   let [categories, setCategories] = useState([]);
@@ -58,6 +58,22 @@ export default function Filters(props) {
     name === "color" ? setColor(content) : setCategory(content);
   };
 
+  const getItemsUp = () => {
+    fetch(`items/price/up`)
+      .then(response => response.json())
+      .then(response => {
+        setItems(response);
+      });
+  };
+
+  const getItemsDown = () => {
+    fetch(`items/price/down`)
+      .then(response => response.json())
+      .then(response => {
+        setItems(response);
+      });
+  };
+
   const resetFilter = () => {
     setColor("");
     setCategory("");
@@ -84,6 +100,21 @@ export default function Filters(props) {
           </ul>
 
           <div className="buttons text-center">
+            <p className="link text-center filter-link">
+              · sort by price{" "}
+              <i
+                className="fa fa-arrow-up"
+                aria-hidden="true"
+                onClick={getItemsUp}
+              ></i>{" "}
+              <i
+                className="fa fa-arrow-down"
+                aria-hidden="true"
+                onClick={getItemsDown}
+              ></i>{" "}
+              ·
+            </p>
+
             <select
               className="w-64 border h6 shadow-sm p-1 rounded-full focus:outline-none"
               name="color"

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 
 export default class cart extends Component {
   constructor(props) {
@@ -20,7 +19,7 @@ export default class cart extends Component {
     callback(updatedList);
 
     if (userId) {
-      const { itemsInCart, callback, userId } = this.props;
+      const { userId } = this.props;
       let articleId = id;
 
       fetch("/orders", {
