@@ -2,7 +2,7 @@
   "name": "midori",
   "version": "0.0.0",
   "engines": {
-    "node": "v15.5.1"
+    "node": "15.5.1"
   },
   "scripts": {
     "start": "nodemon ./bin/www",
